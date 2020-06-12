@@ -1,0 +1,30 @@
+<ion-card mode="ios" color="brc-details">
+    <ion-card-header >
+    <ion-card-title>Microciclo {{microciclo.nro}}</ion-card-title>
+      <ion-card-subtitle>Inicio: {{microciclo.fecha_inicio._seconds*1000 | date:'dd-MM-yy'}}. Fin:{{microciclo.fecha_fin._seconds*1000 | date:'dd-MM-yy'}}</ion-card-subtitle>
+      <div class="nuevo-ejercicio-boton">
+          <!-- <ion-button (click)="agregarNuevoEntreno()" expand="block" fill="outline" shape="round" color="success"> -->
+            <ion-icon name="add-circle-outline" color="primary" (click)="agregarNuevoEntreno()"></ion-icon>        
+          <!-- </ion-button> -->
+        </div>
+    </ion-card-header>
+    <ion-card-content color="brc-details" class="ion-no-padding">
+        <ion-list *ngIf="microciclo.entrenamientos" class="ion-no-padding">
+          <ion-item-sliding *ngFor='let entreno of microciclo.entrenamientos' >
+            
+            <ion-item (click)="verEntreno(entreno)" color="brc-details">
+              <ion-icon slot="start" name="calendar-outline"></ion-icon>
+            <ion-label>{{entreno.fecha._seconds*1000 | date:'dd-MM-yy'}}</ion-label>
+            <!-- <ion-button slot="end"> -->
+                <ion-icon class="entreno-detail" slot="end" name="list-outline"></ion-icon>
+            <!-- </ion-button> -->
+          </ion-item>
+            <ion-item-options side="start">
+              <ion-item-option (click)="copiar(entreno)" color="brc-details"><ion-icon color="primary" name="copy-outline"></ion-icon></ion-item-option>
+              <ion-item-option color="primary" (click)="eliminar(entreno)" color="brc-details"><ion-icon name="trash-outline" color="danger"></ion-icon></ion-item-option>
+            </ion-item-options>
+        
+          </ion-item-sliding>
+        </ion-list>
+    </ion-card-content>
+  </ion-card>

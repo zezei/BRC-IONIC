@@ -1,0 +1,49 @@
+.nuevo-ejercicio-boton{
+    font-size: 40px !important;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    // background-color: #1ba567;
+    color: white !important;
+}
+
+
+
+
+ion-list,ion-card-header,ion-card-content{
+    background-color: #0f425f !important;
+    
+}
+
+ion-card-title{
+    font-size: 20px !important;
+    color: #ffffff !important;
+}
+
+
+ion-item{
+    // color: #0f425f !important
+    --background: #0f425f !important;
+}
+
+ion-item:hover {
+    --background: #5e97b8 !important;
+    cursor: pointer !important;
+
+}
+
+ion-label{
+    color:white !important;
+}
+
+ion-card-subtitle{
+    color: #d1d6d4 !important;
+}
+
+ion-card{
+    width: 300px;
+}
+
+.entreno-detail{
+    color: white !important;
+}

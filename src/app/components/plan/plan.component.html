@@ -1,0 +1,32 @@
+  <ion-card color="brc-details"  (click)="detallePlan()">
+    <ion-card-title class="ion-no-margin" color="brc-details">
+      <ion-item color="brc-details " lines="none">
+        <ion-avatar slot="start">
+          <img src="/assets/imgs/brclogo.png" />
+        </ion-avatar>
+        <ion-label>
+          <h1>{{plan.tipo}}  #{{plan.nro}}</h1>
+        </ion-label>
+      </ion-item>
+    </ion-card-title>
+    <ion-card-content class="ion-no-margin" color="brc-details">
+      <ion-list color="brc-details">
+        <ion-item color="brc-details">
+          <ion-icon slot="start" name="calendar-outline"></ion-icon>
+          <p>Inicio: {{plan.fecha_inicio._seconds *1000 | date}}</p>
+        </ion-item>
+        <ion-item color="brc-details">
+            <ion-icon slot="start" name="calendar-outline"></ion-icon>
+            <p>Vto: {{plan.fecha_vto._seconds *1000 | date}}</p>
+        </ion-item>
+        <ion-item color="brc-details">
+          <ion-icon slot="start" name="cash-outline"  *ngIf="plan.pagado" color="success"></ion-icon>
+          <ion-icon slot="start" name="cash-outline"  *ngIf="!plan.pagado" color="danger"></ion-icon>
+
+          <ion-label>
+            ${{plan.valor}}
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
