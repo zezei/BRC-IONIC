@@ -1,18 +1,21 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { VigentesPipe } from './vigentes.pipe';
+import { BusquedaPipe } from './busqueda.pipe';
 
 
 
 @NgModule({
   declarations: [
-    VigentesPipe
+    VigentesPipe,
+    BusquedaPipe
   ],
   imports: [
     CommonModule
   ],
   exports: [
-    VigentesPipe
+    VigentesPipe,
+    BusquedaPipe
   ]
 })
 export class PipesModule { }

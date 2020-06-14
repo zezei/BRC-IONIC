@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AdminService } from 'src/app/services/admin.service';
 import { ActivatedRoute } from '@angular/router';
-import { Cliente } from 'src/app/interfaces/interfaces';
+import { Cliente, Plan } from 'src/app/interfaces/interfaces';
 import { ModalController } from '@ionic/angular';
 import { NuevoPlanModalComponent } from 'src/app/components/nuevo-plan-modal/nuevo-plan-modal.component';
 
@@ -41,6 +41,8 @@ export class ClientePage implements OnInit {
         this.loading = false;
       }
     })
+
+
 
   }
 

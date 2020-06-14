@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar color="brc">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  <ion-title class="ion-text-center" *ngIf="entreno">Entrenamiento {{entreno.fecha._seconds*1000 | date}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-no-padding" color="brc">
+  <ion-slides mode="ios" pager="ios" scrollbar="ios" *ngIf="entreno" [options]="slidesOpt">
+    <ion-slide>
+        <app-parte-entrenamiento [parte]='entreno.ejercicios_entrada_calor' titulo="Entrada en calor"></app-parte-entrenamiento>
+
+    </ion-slide>
+    <ion-slide>
+        <app-parte-entrenamiento [parte]='entreno.ejercicios_parte_princial' titulo="Parte Principal"></app-parte-entrenamiento>
+        <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+            <ion-fab-button>
+              <ion-icon name="add"></ion-icon>
+            </ion-fab-button>
+          </ion-fab>
+    </ion-slide>
+    <ion-slide>
+        <app-parte-entrenamiento [parte]='entreno.ejercicios_vuelta_a_calma' titulo="Vuelta a la calma"></app-parte-entrenamiento>
+        <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+            <ion-fab-button>
+              <ion-icon name="add"></ion-icon>
+            </ion-fab-button>
+          </ion-fab>
+    </ion-slide>
+  </ion-slides>
+</ion-content>

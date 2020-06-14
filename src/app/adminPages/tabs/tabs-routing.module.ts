@@ -29,6 +29,10 @@ const routes: Routes = [
         path: 'tab1/cliente/:clienteId/planes/:id',
         loadChildren: () => import('../plan/plan.module').then( m => m.PlanPageModule)
       },
+      {
+        path: 'tab1/cliente/:clienteId/planes/:planId/microciclos/:microId/entrenamiento/:entrenoId',
+        loadChildren: () => import('../entrenamiento/entrenamiento.module').then( m => m.EntrenamientoPageModule)
+      },
 
       {
         path: '',

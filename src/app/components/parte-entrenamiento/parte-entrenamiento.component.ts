@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { EjerciciosCompletos } from 'src/app/interfaces/interfaces';
+import { EjerciciosCompletos, EjercicioRef } from 'src/app/interfaces/interfaces';
 
 @Component({
   selector: 'app-parte-entrenamiento',
@@ -9,11 +9,14 @@ import { EjerciciosCompletos } from 'src/app/interfaces/interfaces';
 export class ParteEntrenamientoComponent implements OnInit {
 
 
-  @Input() parte;
+  @Input() parte: EjercicioRef[];
+  @Input() titulo: string;
+  ejerciciosCompletos: EjerciciosCompletos[];
   constructor() { }
 
   ngOnInit() {
     console.log(this.parte)
+
   }
 
 }

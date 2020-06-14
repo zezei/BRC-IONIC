@@ -33,6 +33,7 @@ export class Tab1Page implements OnInit{
       header: 'Crear un cliente nuevo',
       message: 'Complete los datos',
       cssClass: 'customAlert',
+      backdropDismiss: false,
       inputs: [
         {
           name: 'nombre',

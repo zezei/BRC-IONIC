@@ -27,6 +27,7 @@ export class CommonService {
           if (dataLogin.ok) {
             this.guardarToken(this.token)
             this.userAdmin = dataLogin.user.adminUser;
+            console.log("Inicio session correcto")
             resolve(true)
           }
           else {
@@ -48,11 +49,13 @@ export class CommonService {
 
   async cargarToken(){
     this.token = await this.storage.get('token') || null;
+    console.log(this.token)
 
   }
   async verificarAdminToken(): Promise<boolean>{
     await this.cargarToken();
     if (!this.token){
+      console.log("No hay token")
       this.navCtrl.navigateRoot('/login');
       return Promise.resolve(false);
     }
@@ -60,6 +63,7 @@ export class CommonService {
 
       this.http.get(`${URL}/getAdminUser?token=${this.token}`)
       .subscribe( (data:any)=>{
+        console.log(data)
         if (data.ok){
           resolve(true)
         }

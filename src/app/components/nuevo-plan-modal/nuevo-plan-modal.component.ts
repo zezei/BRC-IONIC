@@ -54,7 +54,7 @@ export class NuevoPlanModalComponent implements OnInit {
   }
 
   async crearPlan(){
-    this.creando = false;
+    this.creando = true;
     let creado = await this.adminService.crearPlanParaCliente(this.cliente,this.plan);
     if (creado){{
       this.guiService.alertToast("El plan fue agregado exitosamente")
@@ -63,7 +63,7 @@ export class NuevoPlanModalComponent implements OnInit {
     else{
       this.guiService.alertToast("Error al crear el plan")
 
-      this.creando = true;
+      this.creando = false;
     }
   }
 

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AdminService } from 'src/app/services/admin.service';
 import { ActivatedRoute } from '@angular/router';
 import { Plan } from 'src/app/interfaces/interfaces';
+import { GuiService } from 'src/app/services/gui.service';
 
 @Component({
   selector: 'app-plan',
@@ -25,7 +26,9 @@ export class PlanPage implements OnInit {
     }
 }
   plan: Plan;
-  constructor(private adminService: AdminService, private activatedRoute: ActivatedRoute) { }
+  actualizando = false;
+
+  constructor(private adminService: AdminService, private activatedRoute: ActivatedRoute, private guiService: GuiService) { }
 
   ngOnInit() {
     const clienteId = this.activatedRoute.snapshot.paramMap.get('clienteId')
@@ -39,4 +42,21 @@ export class PlanPage implements OnInit {
 
   }
 
+
+  async actualizarDatosPlan(){
+    this.actualizando = true;
+
+    const exito = await this.adminService.avtualizarDatosPlan(this.plan);
+    if (exito){
+      this.guiService.alertToast("El plan se actualizo exitosamente")
+      this.actualizando = false;
+
+      
+    }
+    else{
+      this.guiService.alertToast("Error al actualizar el plan")
+      this.actualizando = false;
+
+    }
+  }
 }

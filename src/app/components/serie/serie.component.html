@@ -1,0 +1,53 @@
+<ion-grid fixed *ngIf="ejercicioCompleto.serie !== undefined">
+    <ion-row>
+      <ion-col size="2">
+          <div class="reorder-boton">
+              <ion-reorder style="color:#1ba567; stroke: black"></ion-reorder>
+            </div>
+      </ion-col>
+      <ion-col size="10" class="ion-text-center">
+        <ion-label><strong>SERIE</strong></ion-label>
+        </ion-col>
+    </ion-row>
+      <ion-row class="ion-text-center">
+          <ion-col size="3">
+            <ion-label><strong>Ejercicio</strong></ion-label>
+          </ion-col>
+          <ion-col size="2">
+              <ion-label><strong>Series</strong></ion-label>
+            </ion-col>
+          <ion-col size="2">
+            <ion-label><strong>Repeticiones</strong></ion-label>
+          </ion-col>
+          <ion-col size="3">
+            <ion-label><strong>Intensidad</strong></ion-label>
+          </ion-col>
+          <ion-col size="2">
+              <ion-label><strong>Pausa</strong></ion-label>
+            </ion-col>
+        </ion-row>
+        <ion-row *ngFor="let ejercicio of ejercicioCompleto.serie.ejercicios" class="separador-ejercicio animated fadeIn fast">
+            <ion-col size="3" class="ion-text-center">
+              <ion-label>{{ejercicio.nombre}}</ion-label>
+              <ion-avatar style="margin-left: 25%">
+                <img [src]="ejercicio.foto" />
+              </ion-avatar>
+
+            </ion-col>
+            <ion-col size="2" class="ion-text-center pos">
+                <ion-input type="number" placeholder="Series" [(ngModel)]="ejercicio.series">
+                </ion-input>
+              </ion-col>
+            <ion-col size="2" class="ion-text-center pos">
+              <ion-input type="text" placeholder="Repeticiones" [(ngModel)]="ejercicio.repeticiones">
+              </ion-input>
+            </ion-col>
+            <ion-col size="3" class="ion-text-center pos">
+              <ion-input type="text" placeholder="Intensidad" [(ngModel)]="ejercicio.intensidad"></ion-input>
+            </ion-col>
+            <ion-col size="2" class="ion-text-center pos">
+                <ion-input type="number" placeholder="Pausa" [(ngModel)]="ejercicio.pausa">
+                </ion-input>
+              </ion-col>
+          </ion-row>
+  </ion-grid>

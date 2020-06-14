@@ -15,6 +15,7 @@ export class PlanComponent implements OnInit {
 
   ngOnInit() {
     console.log(this.plan)
+    
   }
 
   detallePlan(){

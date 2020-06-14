@@ -9,8 +9,8 @@ import { NuevoPlanModalComponent } from './nuevo-plan-modal/nuevo-plan-modal.com
 import { FormsModule } from '@angular/forms';
 import { MicrocicloComponent } from './microciclo/microciclo.component';
 import { NuevoEntrenoComponent } from './nuevo-entreno/nuevo-entreno.component';
-import { EntrenamientoComponent } from './entrenamiento/entrenamiento.component';
 import { ParteEntrenamientoComponent } from './parte-entrenamiento/parte-entrenamiento.component';
+import { CircuitoComponent } from './circuito/circuito.component';
 
 @NgModule({
   declarations: [
@@ -19,8 +19,8 @@ import { ParteEntrenamientoComponent } from './parte-entrenamiento/parte-entrena
     NuevoPlanModalComponent,
     MicrocicloComponent,
     NuevoEntrenoComponent,
-    EntrenamientoComponent,
-    ParteEntrenamientoComponent
+    ParteEntrenamientoComponent,
+    CircuitoComponent
   ],
   imports: [
     CommonModule,
@@ -31,7 +31,8 @@ import { ParteEntrenamientoComponent } from './parte-entrenamiento/parte-entrena
     ClientesComponent,
     PlanComponent,
     NuevoPlanModalComponent,
-    MicrocicloComponent
+    MicrocicloComponent,
+    ParteEntrenamientoComponent
   ],
 })
 export class ComponentsModule { }

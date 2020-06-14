@@ -12,6 +12,7 @@ const URL = environment.url;
 export class AdminService {
 
   nuevoCliente: EventEmitter<Cliente> = new EventEmitter<Cliente>();
+  planActualizado: EventEmitter<Plan> = new EventEmitter<Plan>();
   constructor(private http: HttpClient, private commonService: CommonService) { }
 
   getClientes(){
@@ -80,5 +81,35 @@ export class AdminService {
       })
     })
 
+  }
+
+  obtenerEjerciciosCompletos(clienteId: string, planId: string, miercocicloId:string, entrenoId: string){
+    return new Promise( resolve=>{
+      this.http.get(`${URL}/clientes/${clienteId}/planes/${planId}/microciclos/${miercocicloId}/entrenamientos/${entrenoId}/ejerciciosCompletos`)
+      .subscribe(data=>{
+        let entreno = data['entrenoData']
+        resolve(entreno)
+      })
+
+    })
+  }
+
+  avtualizarDatosPlan(plan: Plan){
+    return new Promise( resolve =>{
+      this.http.put(`${URL}/clientes/${plan.cliente}/planes/${plan.id}`, plan).subscribe( data=>{
+        console.log(data)
+        if (data['ok']){
+          this.planActualizado.emit(plan);
+          resolve(true)
+        }
+        else{
+          resolve(false)
+        }
+      })
+    })
+  }
+
+  getEjercicios(){
+    return this.http.get(`${URL}/ejercicios`)
   }
 }

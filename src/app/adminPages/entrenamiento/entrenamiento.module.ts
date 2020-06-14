@@ -1,0 +1,22 @@
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+
+import { IonicModule } from '@ionic/angular';
+
+import { EntrenamientoPageRoutingModule } from './entrenamiento-routing.module';
+
+import { EntrenamientoPage } from './entrenamiento.page';
+import { ComponentsModule } from 'src/app/components/components.module';
+
+@NgModule({
+  imports: [
+    CommonModule,
+    FormsModule,
+    IonicModule,
+    EntrenamientoPageRoutingModule,
+    ComponentsModule
+  ],
+  declarations: [EntrenamientoPage]
+})
+export class EntrenamientoPageModule {}

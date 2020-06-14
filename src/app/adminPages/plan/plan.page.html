@@ -17,11 +17,17 @@
       </ion-grid>
   <ion-card color="brc-details" *ngIf="plan">
     <ion-card-content color="brc-details" class="ion-no-padding">
-
+        <div class="nuevo-ejercicio-boton">
+            <!-- <ion-button (click)="agregarNuevoEntreno()" expand="block" fill="outline" shape="round" color="success"> -->
+              
+              <ion-icon *ngIf="!actualizando" name="save-outline"  (click)="actualizarDatosPlan()"></ion-icon>  
+              <ion-spinner *ngIf="actualizando" name="crescent"></ion-spinner>      
+            <!-- </ion-button> -->
+          </div>
       <ion-list color="brc-details" class="ion-no-padding">
         <ion-grid fixed>
           <ion-row>
-            <ion-col size="7">
+            <ion-col size="12">
               <ion-item color="brc-details" lines="none">
                 <ion-icon slot="start" name="fitness-outline" class="brc-buttons"></ion-icon>
                 <ion-label>
@@ -33,27 +39,21 @@
               </ion-item>
 
             </ion-col>
-            <ion-col size="5">
-              <ion-item color="brc-details" lines="none">
-                <ion-label>
-
-                </ion-label>
-
-              </ion-item>
-            </ion-col>
           </ion-row>
           <ion-row>
             <ion-col size="6">
               <ion-item color="brc-details" lines="none">
                 <ion-icon slot="start" name="calendar-outline" class="brc-buttons"></ion-icon>
-                <ion-label>{{plan.fecha_inicio._seconds*1000 | date}}</ion-label>
+                <p>{{plan.fecha_inicio._seconds*1000 | date}}</p>
               </ion-item>
             </ion-col>
             <ion-col size="6">
               <ion-item color="brc-details" lines="none">
-                <ion-label>
+                  <ion-icon slot="start" name="calendar-outline" class="brc-buttons"></ion-icon>
+
+                <p>
                   {{plan.fecha_vto._seconds*1000 | date}}
-                </ion-label>
+                </p>
               </ion-item>
             </ion-col>
           </ion-row>
@@ -202,7 +202,7 @@
     <app-microciclo [microciclo]="microciclo" [clienteId]="plan.cliente"></app-microciclo>
    </ion-slide>
  </ion-slides>
- <ion-slides mode="ios" pager="ios" *ngIf="!plan">
+ <ion-slides mode="ios" pager="ios" *ngIf="!plan" [options]='slidesOpt'>
     <ion-slide *ngFor="let microciclo of [1,2,3,4]" >
      <ion-card color="brc-details" style="width:250px; height:150px;">
        <ion-card-title><ion-skeleton-text animated style="width: 100%"></ion-skeleton-text></ion-card-title>

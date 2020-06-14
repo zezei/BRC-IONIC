@@ -35,20 +35,18 @@
   }
   
   export interface Entrenamiento {
-    id: string;
-    fecha: Fecha;
-    ejercicios_entrada_calor: EjercicioRef[];
-    ejercicios_parte_princial: EjercicioRef[];
-    ec_completa: EjerciciosCompletos[];
-    pp_completa: EjerciciosCompletos[];
-    vc_completa: EjerciciosCompletos[]
-    turno: string;
-    ejercicios_vuelta_a_calma: EjercicioRef[];
+    id?: string;
+    fecha?: Fecha;
+    ejercicios_entrada_calor?: EjercicioRef[];
+    ejercicios_parte_princial?: EjercicioRef[];
+    ejercicios_vuelta_a_calma?: EjercicioRef[];
   }
   
   export interface EjercicioRef {
     refId: string;
     orden: string;
+    circuito?: Circuito;
+    serie?: Serie;
   }
   
   export interface Fecha {
