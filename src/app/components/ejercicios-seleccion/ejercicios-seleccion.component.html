@@ -8,7 +8,7 @@
 
  -->
 
-<ion-content [fullscreen]="true" color="brc">
+ <ion-content [fullscreen]="true" color="brc">
     <ion-searchbar (ionChange)="onSearchChange($event)" animated color="brc" [(ngModel)]="textoBusqueda"></ion-searchbar>
     <ion-toolbar color="brc">
         
@@ -22,7 +22,7 @@
                 </ion-segment>
     </ion-toolbar>
     <ion-list *ngIf="adminService.ejercicios">
-            <ion-item-sliding *ngFor="let ejercicio of adminService.ejercicios | busqueda:nombreEjercicioSearch:'categoria' | busqueda: textoBusqueda: 'nombre'" class="animated fadeIn fast">
+            <ion-item-sliding *ngFor="let ejercicio of ejercicios | busqueda:nombreEjercicioSearch:'categoria' | busqueda: textoBusqueda: 'nombre'" class="animated fadeIn fast">
 
         <ion-item color="brc">
             <ion-avatar slot="start" (click)="mostrarImagen(ejercicio)">
@@ -33,6 +33,9 @@
                 <h3>{{ejercicio.categoria}}</h3>
                 <p>{{ejercicio.subcategoria}}</p>
             </ion-label>
+            <ion-checkbox slot="end" [(ngModel)]="ejercicio.seleccionado" (ionChange)="mostarEstado(ejercicio)"></ion-checkbox>
+
+
         </ion-item>
         <ion-item-options side="start">
                 <ion-item-option color="success" (click)="openEjercicioPopover(ejercicio)">
@@ -45,11 +48,6 @@
             </ion-item-sliding>
 
     </ion-list>
-    <ion-fab vertical="bottom" horizontal="end" slot="fixed" *ngIf="ejercicios">
-        <ion-fab-button (click)="openEjercicioPopover()">
-            <ion-icon name="add"></ion-icon>
-        </ion-fab-button>
-    </ion-fab>
     <ion-list *ngIf="!adminService.ejercicios">
         <ion-item *ngFor="let i of [1,2,3,4,5,6,7,8,9,10,1,1,1,1]" color="brc">
             <ion-skeleton-text slot="start" animated style="width: 10%"></ion-skeleton-text>
@@ -60,4 +58,9 @@
         </ion-item>
     </ion-list>
 
+    <ion-fab vertical="top" horizontal="end" slot="fixed">
+      <ion-fab-button (click)="seleccionar()">
+          <ion-icon name="checkmark-outline" color="success"></ion-icon> 
+             </ion-fab-button>
+    </ion-fab>
 </ion-content>

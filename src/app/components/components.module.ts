@@ -11,6 +11,8 @@ import { MicrocicloComponent } from './microciclo/microciclo.component';
 import { NuevoEntrenoComponent } from './nuevo-entreno/nuevo-entreno.component';
 import { ParteEntrenamientoComponent } from './parte-entrenamiento/parte-entrenamiento.component';
 import { CircuitoComponent } from './circuito/circuito.component';
+import { EjerciciosSeleccionComponent } from './ejercicios-seleccion/ejercicios-seleccion.component';
+import { PipesModule } from '../pipes/pipes.module';
 
 @NgModule({
   declarations: [
@@ -20,19 +22,22 @@ import { CircuitoComponent } from './circuito/circuito.component';
     MicrocicloComponent,
     NuevoEntrenoComponent,
     ParteEntrenamientoComponent,
-    CircuitoComponent
+    CircuitoComponent,
+    EjerciciosSeleccionComponent
   ],
   imports: [
     CommonModule,
     IonicModule,
-    FormsModule
+    FormsModule,
+    PipesModule
   ],
   exports: [
     ClientesComponent,
     PlanComponent,
     NuevoPlanModalComponent,
     MicrocicloComponent,
-    ParteEntrenamientoComponent
+    ParteEntrenamientoComponent,
+    EjerciciosSeleccionComponent
   ],
 })
 export class ComponentsModule { }

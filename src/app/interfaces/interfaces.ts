@@ -37,14 +37,13 @@
   export interface Entrenamiento {
     id?: string;
     fecha?: Fecha;
-    ejercicios_entrada_calor?: EjercicioRef[];
-    ejercicios_parte_princial?: EjercicioRef[];
-    ejercicios_vuelta_a_calma?: EjercicioRef[];
+    ejercicios_entrada_calor?: ParteEntreno[];
+    ejercicios_parte_princial?: ParteEntreno[];
+    ejercicios_vuelta_a_calma?: ParteEntreno[];
   }
   
-  export interface EjercicioRef {
-    refId: string;
-    orden: string;
+  export interface ParteEntreno {
+    orden?: string;
     circuito?: Circuito;
     serie?: Serie;
   }
@@ -55,8 +54,6 @@
   }
 
   export interface Circuito{
-    nombre_circuito?: string;
-    id?: string;
     series?: number;
     pausa_entre_series?: number;
     pausa_entre_repeticiones?: number;

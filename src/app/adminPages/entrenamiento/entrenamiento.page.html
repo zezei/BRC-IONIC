@@ -4,30 +4,32 @@
       <ion-back-button></ion-back-button>
     </ion-buttons>
   <ion-title class="ion-text-center" *ngIf="entreno">Entrenamiento {{entreno.fecha._seconds*1000 | date}}</ion-title>
+  <ion-title class="ion-text-center" *ngIf="!entreno"><ion-skeleton-text animated style="width: 100%"></ion-skeleton-text></ion-title>
+
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-no-padding" color="brc">
-  <ion-slides mode="ios" pager="ios" scrollbar="ios" *ngIf="entreno" [options]="slidesOpt">
-    <ion-slide>
-        <app-parte-entrenamiento [parte]='entreno.ejercicios_entrada_calor' titulo="Entrada en calor"></app-parte-entrenamiento>
-
+    <ion-segment scrollable mode="md" color="success" [ngModel]="tipoParte">
+        <ion-segment-button value="ec" (click)="mostrarEC()">
+          <ion-label>EC</ion-label>
+        </ion-segment-button>
+              <ion-segment-button value="pp" (click)="mostrarPP()">
+                  <ion-label>PP</ion-label>
+              </ion-segment-button>
+              <ion-segment-button value="vc" (click)="mostrarVC()">
+                  <ion-label>VC</ion-label>
+              </ion-segment-button>
+        </ion-segment>
+  <ion-slides #slidePrincipal mode="ios" pager="ios" scrollbar="ios"  [options]="slidesOpt" >
+    <ion-slide *ngIf="entreno">
+        <app-parte-entrenamiento [parte]='entreno.ejercicios_entrada_calor' (nuevaParte)="actualizarEntreno($event)" titulo="Entrada en calor"></app-parte-entrenamiento>
     </ion-slide>
-    <ion-slide>
-        <app-parte-entrenamiento [parte]='entreno.ejercicios_parte_princial' titulo="Parte Principal"></app-parte-entrenamiento>
-        <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-            <ion-fab-button>
-              <ion-icon name="add"></ion-icon>
-            </ion-fab-button>
-          </ion-fab>
+    <ion-slide *ngIf="entreno">
+        <app-parte-entrenamiento [parte]='entreno.ejercicios_parte_princial' (nuevaParte)="actualizarEntreno($event)" titulo="Parte Principal"></app-parte-entrenamiento>
     </ion-slide>
-    <ion-slide>
-        <app-parte-entrenamiento [parte]='entreno.ejercicios_vuelta_a_calma' titulo="Vuelta a la calma"></app-parte-entrenamiento>
-        <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-            <ion-fab-button>
-              <ion-icon name="add"></ion-icon>
-            </ion-fab-button>
-          </ion-fab>
+    <ion-slide *ngIf="entreno">
+        <app-parte-entrenamiento [parte]='entreno.ejercicios_vuelta_a_calma' (nuevaParte)="actualizarEntreno($event)" titulo="Vuelta a la calma"></app-parte-entrenamiento>
     </ion-slide>
   </ion-slides>
 </ion-content>

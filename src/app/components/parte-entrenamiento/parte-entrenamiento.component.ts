@@ -1,5 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { EjerciciosCompletos, EjercicioRef } from 'src/app/interfaces/interfaces';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
+import { EjerciciosCompletos, ParteEntreno } from 'src/app/interfaces/interfaces';
+import { AdminService } from 'src/app/services/admin.service';
 
 @Component({
   selector: 'app-parte-entrenamiento',
@@ -9,14 +10,43 @@ import { EjerciciosCompletos, EjercicioRef } from 'src/app/interfaces/interfaces
 export class ParteEntrenamientoComponent implements OnInit {
 
 
-  @Input() parte: EjercicioRef[];
+  @Input() parte: ParteEntreno[];
   @Input() titulo: string;
+  @Input() tipo_parte: string;
   ejerciciosCompletos: EjerciciosCompletos[];
-  constructor() { }
+  @Input() entrenoId;
+  @Output() nuevaParte: EventEmitter<ParteEntreno[]> = new EventEmitter<ParteEntreno[]>();
+  constructor(private adminService: AdminService) { }
 
   ngOnInit() {
     console.log(this.parte)
 
   }
+
+   crearCircuito(){
+    //DEbe recibir dni, planid microid ebtrenoid
+    let nuevoCircuito = {
+      circuito: {}
+
+    }
+    this.parte.unshift(nuevoCircuito)
+  }
+  
+
+  crearSerie(){
+    let nuevaSerie: ParteEntreno = {
+      serie: {}
+    }
+    this.parte.unshift(nuevaSerie)
+  }
+
+
+  guardar(event){
+
+    console.log(event)
+    console.log(this.parte)
+    this.nuevaParte.emit(this.parte);
+  }
+
 
 }

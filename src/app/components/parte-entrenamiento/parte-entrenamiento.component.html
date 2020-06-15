@@ -1,3 +1,4 @@
+<div class="container">
 <ion-grid fixed>
     <ion-row>
       <ion-col size="12" class="ion-text-center">
@@ -10,15 +11,28 @@
       <ion-item *ngFor="let bloque of parte"
         color="brc-details" class="circuito-table animated fadeIn fast">
         <!-- Si es un circuito app-circuito  bloque.circuito?-->
-        <app-circuito *ngIf="bloque.circuito" [circuito]="bloque.circuito"></app-circuito>
+        <app-circuito *ngIf="bloque.circuito" [circuito]="bloque.circuito" (actualizarCircuito)="guardar($event)"></app-circuito>
         <!-- Sino app-serie bloque.serie?-->
       </ion-item>
     </ion-reorder-group>
   </ion-list>
-  <ion-fab vertical="bottom" horizontal="end" slot="fixed" >
-      <ion-fab-button>
-        <ion-icon name="add"></ion-icon>
-      </ion-fab-button>
-    </ion-fab>
-
+  </div>
+<div class="btn-container">
+    <ion-fab vertical="top" horizontal="end" slot="fixed">
+        <ion-fab-button>
+          <ion-icon name="add"></ion-icon>
+        </ion-fab-button>
+        <ion-fab-list side="bottom">
+          <ion-fab-button (click)="crearCircuito()">
+            <ion-avatar>
+              <ion-img src="/assets/imgs/circuit.png"></ion-img>
+              <!-- <img src="/assets/imgs/circuit.png" /> -->
+            </ion-avatar>
+            </ion-fab-button>
+            <ion-fab-button (click)="crearSerie()">
+                <ion-icon name="reorder-four-outline"></ion-icon>
+              </ion-fab-button>
+            </ion-fab-list>
+          </ion-fab>
+</div>
 
