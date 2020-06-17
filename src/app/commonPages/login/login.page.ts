@@ -32,6 +32,9 @@ export class LoginPage implements OnInit {
         this.iniciandoSesion = false;
       }
       else{
+        this.navCtrl.navigateRoot('users/tabs/home', {animated: true})
+        this.iniciandoSesion = false;
+
         console.log("redireccionar a user page")
       }
     }

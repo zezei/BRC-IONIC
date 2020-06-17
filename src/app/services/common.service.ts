@@ -15,6 +15,7 @@ const URL = environment.url;
 export class CommonService {
   token = '';
   userAdmin: boolean = false;
+  decodedUser: any;
   constructor(private auth: AngularFireAuth, private http: HttpClient, private storage: Storage, private navCtrl: NavController) { }
 
 
@@ -25,6 +26,7 @@ export class CommonService {
         this.http.post(`${URL}/login?token=${this.token}`, '').subscribe((dataLogin: any) => {
           console.log(dataLogin)
           if (dataLogin.ok) {
+            this.decodedUser = dataLogin.user;
             this.guardarToken(this.token)
             this.userAdmin = dataLogin.user.adminUser;
             console.log("Inicio session correcto")

@@ -36,6 +36,8 @@
     <ion-slides mode="ios" [options]="slidesOpt">
       <ion-slide *ngFor="let plan of cliente.planes | vigentes: true">
         <app-plan [plan]="plan"></app-plan>
+        <ion-ripple-effect></ion-ripple-effect>
+
       </ion-slide>
       <ion-slide *ngIf="(cliente.planes | vigentes: true).length === 0">
         <h3 class="ion-text-center" style="color: #c8c7c7">No hay planes vigentes</h3>

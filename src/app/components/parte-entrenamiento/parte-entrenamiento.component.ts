@@ -29,7 +29,7 @@ export class ParteEntrenamientoComponent implements OnInit {
       circuito: {}
 
     }
-    this.parte.unshift(nuevoCircuito)
+    this.parte.push(nuevoCircuito)
   }
   
 

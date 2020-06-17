@@ -18,10 +18,10 @@ export class PlanPage implements OnInit {
         slidesPerView: 2,
       },
       768: {
-        slidesPerView: 3,
+        slidesPerView: 2,
       },
       1024: {
-        slidesPerView: 4,
+        slidesPerView: 2,
       },
     }
 }
@@ -45,8 +45,15 @@ export class PlanPage implements OnInit {
 
   async actualizarDatosPlan(){
     this.actualizando = true;
-
-    const exito = await this.adminService.avtualizarDatosPlan(this.plan);
+    let plan: Plan = {
+      id: this.plan.id,
+      pagado: this.plan.pagado,
+      cliente: this.plan.cliente,
+      objetivos_generales: this.plan.objetivos_generales,
+      objetivos_especificos: this.plan.objetivos_especificos
+      
+    }
+    const exito = await this.adminService.avtualizarDatosPlan(plan);
     if (exito){
       this.guiService.alertToast("El plan se actualizo exitosamente")
       this.actualizando = false;

@@ -16,6 +16,14 @@ const routes: Routes = [
     redirectTo: 'login',
     pathMatch: 'full',
   },
+  {
+    path: 'users',
+    loadChildren: () => import('./userPages/tabs/tabs.module').then( m => m.TabsPageModule)
+  },
+  {
+    path: 'hoy',
+    loadChildren: () => import('./userPages/hoy/hoy.module').then( m => m.HoyPageModule)
+  },
 
 ];
 @NgModule({
