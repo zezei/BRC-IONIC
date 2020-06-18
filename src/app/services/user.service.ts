@@ -22,7 +22,7 @@ export class UserService {
   //   .subscribe(data=>console.log(data))
   // }
 
-  getEntrenoDiario(){
-    return this.http.get(`${URL}/usuario/123/entreno_hoy`)
+  getPlanesVigentes(){
+    return this.http.get(`${URL}/usuario/123/planes_vigentes`)
   }
 }

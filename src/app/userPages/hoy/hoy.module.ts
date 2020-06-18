@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { HoyPageRoutingModule } from './hoy-routing.module';
 
 import { HoyPage } from './hoy.page';
+import { ComponentsModule } from 'src/app/components/components.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    HoyPageRoutingModule
+    HoyPageRoutingModule,
+    ComponentsModule
   ],
   declarations: [HoyPage]
 })

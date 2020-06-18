@@ -33,11 +33,12 @@ semanasOpt = {
 
 }
 
+value = '';
 today = new Date();
   constructor(private userService: UserService) { }
 
   ngOnInit() {
-    this.userService.getEntrenoDiario().subscribe(data=>{
+    this.userService.getPlanesVigentes().subscribe(data=>{
       this.planesVigentes.push(...data['planesVigentes'])
       console.log(this.planesVigentes)
     });
@@ -53,5 +54,5 @@ today = new Date();
     console.log(new Date(microciclo.fecha_fin._seconds))
     return new Date(microciclo.fecha_fin._seconds*1000)
   }
-
+  
 }

@@ -1,8 +1,4 @@
-ion-icon{
-    font-size: 24px !important;
-    // color: var(--ion-color-tertiary) !important;
 
-}
 
 h3{
     font-weight: bold;
@@ -43,7 +39,16 @@ ion-img{
 }
 
 .labels{
-    font-size: 20px !important;
+    font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+    font-size: 25px;
+    letter-spacing: 0px;
+    word-spacing: 2px;
+    color: #000000;
+    font-weight: normal;
+    text-decoration: none;
+    font-style: normal;
+    font-variant: normal;
+    text-transform: none;
     // color: #1ba567 !important;
     // text-shadow: 0px 3px 10px rgba(255, 255, 255, 0.82) !important;
 
@@ -56,13 +61,33 @@ ion-img{
     // text-shadow: 0px 7px 10px rgba(255,255,255,0.82) !important;
 }
 
+ion-button{
+    color:#1ba567 !important;
+ 
+}
+
 .microciclo-seleccionado {
     transition: opacity 0.5s linear;
     opacity: 1 !important;
+    font-size: 30px !important
 }
 
 .detallePlan{
     border-radius: 5%;
     margin-top: 20px !important;
     background-color: #313233 !important;
+}
+
+.semanas:hover{
+    cursor: pointer !important;
+    transition: opacity 0.5s linear;
+    background-color: #1ba5671e;
+    border-radius: 50% !important;
+    opacity: 1 !important;
+    font-size: 20px !important;
+}
+
+.detalleIcons{
+    --box-shadow: 0px 0px 10px 8px rgb(79, 80, 80) !important;
+    font-size: 20px !important;
 }

@@ -13,6 +13,7 @@ import { ParteEntrenamientoComponent } from './parte-entrenamiento/parte-entrena
 import { CircuitoComponent } from './circuito/circuito.component';
 import { EjerciciosSeleccionComponent } from './ejercicios-seleccion/ejercicios-seleccion.component';
 import { PipesModule } from '../pipes/pipes.module';
+import { EntrenamientoUserComponent } from './entrenamiento-user/entrenamiento-user.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { PipesModule } from '../pipes/pipes.module';
     NuevoEntrenoComponent,
     ParteEntrenamientoComponent,
     CircuitoComponent,
-    EjerciciosSeleccionComponent
+    EjerciciosSeleccionComponent,
+    EntrenamientoUserComponent
   ],
   imports: [
     CommonModule,
@@ -37,7 +39,8 @@ import { PipesModule } from '../pipes/pipes.module';
     NuevoPlanModalComponent,
     MicrocicloComponent,
     ParteEntrenamientoComponent,
-    EjerciciosSeleccionComponent
+    EjerciciosSeleccionComponent,
+    EntrenamientoUserComponent
   ],
 })
 export class ComponentsModule { }

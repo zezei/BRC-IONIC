@@ -1,9 +1,9 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>hoy</ion-title>
+  <ion-toolbar color="dark">
+    <ion-title>Entrnamiento de hoy</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-
+<ion-content color="dark" class="ion-no-padding ion-no-margin">
+<app-entrenamiento-user *ngIf="entrenamientoDiario" [parte]="entrenamientoDiario.ejercicios_entrada_calor"></app-entrenamiento-user>
 </ion-content>
