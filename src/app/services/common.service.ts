@@ -76,4 +76,28 @@ export class CommonService {
       })
     })
   }
+
+  async verificarUserToken(): Promise<boolean>{
+    await this.cargarToken();
+    if (!this.token){
+      console.log("No hay token")
+      this.navCtrl.navigateRoot('/login');
+      return Promise.resolve(false);
+    }
+    return new Promise<boolean>( resolve=>{
+
+      this.http.get(`${URL}/getUser?token=${this.token}`)
+      .subscribe( (data:any)=>{
+        console.log(data)
+        if (data.ok){
+          this.decodedUser = data.user;
+          resolve(true)
+        }
+        else{
+          this.navCtrl.navigateRoot('/login');
+          resolve(false);
+        }
+      })
+    })
+  }
 }

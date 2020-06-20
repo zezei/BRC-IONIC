@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { VigentesPipe } from './vigentes.pipe';
 import { BusquedaPipe } from './busqueda.pipe';
 import { ArrayOrderPipe } from './array-order.pipe';
+import { ArregloPorFechaPipe } from './arreglo-por-fecha.pipe';
 
 
 
@@ -10,7 +11,8 @@ import { ArrayOrderPipe } from './array-order.pipe';
   declarations: [
     VigentesPipe,
     BusquedaPipe,
-    ArrayOrderPipe
+    ArrayOrderPipe,
+    ArregloPorFechaPipe
   ],
   imports: [
     CommonModule
@@ -18,7 +20,8 @@ import { ArrayOrderPipe } from './array-order.pipe';
   exports: [
     VigentesPipe,
     BusquedaPipe,
-    ArrayOrderPipe
+    ArrayOrderPipe,
+    ArregloPorFechaPipe
   ]
 })
 export class PipesModule { }

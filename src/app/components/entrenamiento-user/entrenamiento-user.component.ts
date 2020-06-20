@@ -1,5 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { ParteEntreno, Circuito } from 'src/app/interfaces/interfaces';
+import { Component, OnInit, Input, ViewChild } from '@angular/core';
+import { ParteEntreno, Circuito, Entrenamiento } from 'src/app/interfaces/interfaces';
+import { IonSlides, IonSegment } from '@ionic/angular';
 
 @Component({
   selector: 'app-entrenamiento-user',
@@ -8,28 +9,39 @@ import { ParteEntreno, Circuito } from 'src/app/interfaces/interfaces';
 })
 export class EntrenamientoUserComponent implements OnInit {
 
-  @Input() parte: ParteEntreno[];
+  @Input() entreno: Entrenamiento;
   circuito: Circuito = {};
-  slidesOpt = {
+  @ViewChild('parteSlide', { static: true }) slides: IonSlides;
+  @ViewChild('entrenamientoSegment', {static:true}) segment:any;
+
+  tipoParte = 'ec';
+  parteOpts = {
     slidesPerView: 1,
-    spaceBetween: 10,
-    breakpoints: {
-      640: {
-        slidesPerView: 2,
-      },
-      768: {
-        slidesPerView: 3,
-      },
-      1024: {
-        slidesPerView: 3,
-      },
-    }
   }
   constructor() { }
 
   ngOnInit() {
-    console.log(this.parte)
-    this.circuito = this.parte[0].circuito;
+    console.log(this.entreno)
+    this.slides.lockSwipes(true)
+  }
+
+  mostrarEC() {
+    this.slides.lockSwipes(false);
+    this.slides.slideTo(0);
+    this.slides.lockSwipes(true);
+
+  }
+
+  mostrarPP() {
+    this.slides.lockSwipes(false);
+    this.slides.slideTo(1);
+    this.slides.lockSwipes(true);
+
+  }
+  mostrarVC(){
+    this.slides.lockSwipes(false);
+    this.slides.slideTo(2);
+    this.slides.lockSwipes(true);
   }
 
 }

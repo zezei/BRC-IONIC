@@ -1,4 +1,3 @@
-
   export interface Cliente {
     id?: string;
     email?: string;
@@ -22,13 +21,13 @@
     pagado?: boolean
     objetivos_generales?: string;
     objetivos_especificos?: string;
+    seleccionado?: boolean;
   }
   
   export interface Microciclo {
     id: string;
     entrenamientos: Entrenamiento[];
     nro: string;
-
     fecha_inicio?: Fecha;
     fecha_fin?: Fecha;
     plan_id?: string;
@@ -37,6 +36,7 @@
   export interface Entrenamiento {
     id?: string;
     fecha?: Fecha;
+    medio?: string;
     ejercicios_entrada_calor?: ParteEntreno[];
     ejercicios_parte_princial?: ParteEntreno[];
     ejercicios_vuelta_a_calma?: ParteEntreno[];
@@ -46,8 +46,28 @@
     orden?: string;
     circuito?: Circuito;
     serie?: Serie;
+    running?: Running;
+    contiuno_variable?: ContiunoVariable;
   }
   
+  export interface ContiunoVariable{
+    modo: string;
+    duracion?: Date;
+    distancia?: number;
+    desnivelPositivo: number;
+    modoVariable?: string;
+    intensidadA?: string;
+    intensidadB?: string;
+    duracionA?: Date;
+    distanciaA?: number;
+    duracionB?: Date;
+    distanciaB?: number;
+  }
+
+  export interface Running {
+    distancia?: number;
+    tiempo?: Date;
+  }
   export interface Fecha {
     _seconds: number;
     _nanoseconds: number;

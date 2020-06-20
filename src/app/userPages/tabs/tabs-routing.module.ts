@@ -17,6 +17,11 @@ const routes: Routes = [
         path: 'hoy',
         loadChildren: () => import('../hoy/hoy.module').then( m => m.HoyPageModule)
       },
+        {
+    path: 'home/semana',
+    loadChildren: () => import('../seamana-detalle/seamana-detalle.module').then( m => m.SeamanaDetallePageModule)
+  },
+
       {
         path: '',
         redirectTo: '/tabs/home',

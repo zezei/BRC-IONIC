@@ -16,8 +16,6 @@ export class VigentesPipe implements PipeTransform {
           planesNuevos.push(plan)
         }}
         )
-     
-        
       }
       else{
         planes.filter(plan=> {

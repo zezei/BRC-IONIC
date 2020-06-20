@@ -43,27 +43,20 @@ export class EntrenamientoPage implements OnInit {
     this.microcicloId = this.activatedRoute.snapshot.paramMap.get('microId');
     this.entrenoId = this.activatedRoute.snapshot.paramMap.get('entrenoId');
     this.entreno = await this.adminSerivce.obtenerEntrenamiento(this.clienteId, this.planId, this.microcicloId, this.entrenoId)
-    this.slides.lockSwipes(true);
 
   }
 
   mostrarEC() {
-    this.slides.lockSwipes(false);
     this.slides.slideTo(0);
-    this.slides.lockSwipes(true);
 
   }
 
   mostrarPP() {
-    this.slides.lockSwipes(false);
     this.slides.slideTo(1);
-    this.slides.lockSwipes(true);
 
   }
   mostrarVC(){
-    this.slides.lockSwipes(false);
     this.slides.slideTo(2);
-    this.slides.lockSwipes(true);
   }
 
   async actualizarEntreno(event){

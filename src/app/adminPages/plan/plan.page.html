@@ -198,7 +198,7 @@
       </ion-row>
     </ion-grid>
  <ion-slides mode="ios" pager="ios" *ngIf="plan" [options]="slidesOpt">
-   <ion-slide *ngFor="let microciclo of plan.microciclos" >
+   <ion-slide *ngFor="let microciclo of plan.microciclos">
     <app-microciclo [microciclo]="microciclo" [clienteId]="plan.cliente"></app-microciclo>
    </ion-slide>
  </ion-slides>

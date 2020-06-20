@@ -11,11 +11,15 @@ import { NavController } from '@ionic/angular';
 export class LoginPage implements OnInit {
 
 
-  loginUser = {
-    email: 'catgolondrinas@gmail.com',
-    password: 'triston35817100'
-  };
+  // loginUser = {
+  //   email: 'catgolondrinas@gmail.com',
+  //   password: 'triston35817100'
+  // };
 
+  loginUser = {
+    email: 'test@test.com',
+    password: 'test123'
+  };
   iniciandoSesion = false;
   constructor(private commonService: CommonService, private navCtrl: NavController) { }
 

@@ -5,31 +5,44 @@
     </ion-buttons>
   <ion-title class="ion-text-center" *ngIf="entreno">Entrenamiento {{entreno.fecha._seconds*1000 | date}}</ion-title>
   <ion-title class="ion-text-center" *ngIf="!entreno"><ion-skeleton-text animated style="width: 100%"></ion-skeleton-text></ion-title>
+  <!-- <ion-segment scrollable mode="md" color="success" [ngModel]="tipoParte">
+      <ion-segment-button value="ec" (click)="mostrarEC()">
+        <ion-label>Entrada en calor</ion-label>
+      </ion-segment-button>
+            <ion-segment-button value="pp" (click)="mostrarPP()">
+                <ion-label>Parte Principal</ion-label>
+            </ion-segment-button>
+            <ion-segment-button value="vc" (click)="mostrarVC()">
+                <ion-label>Vuelta a calma</ion-label>
+            </ion-segment-button>
+      </ion-segment> -->
 
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-no-padding" color="brc">
-    <ion-segment scrollable mode="md" color="success" [ngModel]="tipoParte">
-        <ion-segment-button value="ec" (click)="mostrarEC()">
-          <ion-label>EC</ion-label>
-        </ion-segment-button>
-              <ion-segment-button value="pp" (click)="mostrarPP()">
-                  <ion-label>PP</ion-label>
-              </ion-segment-button>
-              <ion-segment-button value="vc" (click)="mostrarVC()">
-                  <ion-label>VC</ion-label>
-              </ion-segment-button>
-        </ion-segment>
-  <ion-slides #slidePrincipal mode="ios" pager="ios" scrollbar="ios"  [options]="slidesOpt" >
-    <ion-slide *ngIf="entreno">
-        <app-parte-entrenamiento [parte]='entreno.ejercicios_entrada_calor' (nuevaParte)="actualizarEntreno($event)" titulo="Entrada en calor"></app-parte-entrenamiento>
-    </ion-slide>
-    <ion-slide *ngIf="entreno">
+
+  <ion-grid fixed>
+    <ion-row *ngIf="entreno">
+      <ion-col size="12">
+      <app-parte-entrenamiento [parte]='entreno.ejercicios_entrada_calor' (nuevaParte)="actualizarEntreno($event)" titulo="Entrada en calor"></app-parte-entrenamiento>
+      </ion-col>
+      <ion-col size="12">
         <app-parte-entrenamiento [parte]='entreno.ejercicios_parte_princial' (nuevaParte)="actualizarEntreno($event)" titulo="Parte Principal"></app-parte-entrenamiento>
+
+      </ion-col>
+      <app-parte-entrenamiento [parte]='entreno.ejercicios_vuelta_a_calma' (nuevaParte)="actualizarEntreno($event)" titulo="Vuelta a la calma"></app-parte-entrenamiento>
+      <ion-col size="12">
+        
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <!-- <ion-slides #slidePrincipal [options]="slidesOpt" >
+    <ion-slide *ngIf="entreno">
     </ion-slide>
     <ion-slide *ngIf="entreno">
-        <app-parte-entrenamiento [parte]='entreno.ejercicios_vuelta_a_calma' (nuevaParte)="actualizarEntreno($event)" titulo="Vuelta a la calma"></app-parte-entrenamiento>
     </ion-slide>
-  </ion-slides>
+    <ion-slide *ngIf="entreno">
+    </ion-slide>
+  </ion-slides> -->
 </ion-content>

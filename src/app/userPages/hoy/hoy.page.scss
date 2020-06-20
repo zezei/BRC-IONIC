@@ -1,0 +1,27 @@
+#avatarSlides{
+    width: 300px !important;
+}
+
+img {
+    width: 60px !important;
+    height: 60px !important;
+}
+
+.pick-avatar {
+    width: 60px;
+    opacity: 0.3;
+}
+
+.pick-avatar-seleccionado {
+    transition: opacity 0.5s linear;
+    opacity: 1 !important;
+    font-weight: bold;
+}
+
+ion-label{
+    font-size: 12px !important;
+}
+
+ion-slides{
+    width: 100% !important;
+}

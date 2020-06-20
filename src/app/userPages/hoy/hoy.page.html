@@ -1,9 +1,26 @@
 <ion-header>
   <ion-toolbar color="dark">
-    <ion-title>Entrnamiento de hoy</ion-title>
+    <ion-title>Entrenamiento de hoy</ion-title>
+    
   </ion-toolbar>
 </ion-header>
 
-<ion-content color="dark" class="ion-no-padding ion-no-margin">
-<app-entrenamiento-user *ngIf="entrenamientoDiario" [parte]="entrenamientoDiario.ejercicios_entrada_calor"></app-entrenamiento-user>
+<ion-content color="dark" >
+
+  <ion-slides [options]="avatarSlidesOpt" #avatarSlides style="margin-top:20px">
+    <ion-slide *ngFor="let tipo of tipoPlanes; let i = index;">
+  
+      <div (click)="seleccionarPlan(tipo, i)" class="pick-avatar" [ngClass]="{ 'pick-avatar-seleccionado': tipo.selccionado }">
+        <ion-avatar >
+          <img src="/assets/imgs/{{tipo.img}}" />
+        </ion-avatar>
+        <ion-label>{{tipo.valor}}</ion-label>
+      </div>
+    </ion-slide>
+  </ion-slides>
+  <ion-slides #slidePrincipal>
+    <ion-slide *ngFor="let entrenoDiario of entrenamientoDiario">
+      <app-entrenamiento-user [entreno]="entrenoDiario"></app-entrenamiento-user>
+    </ion-slide>
+  </ion-slides>
 </ion-content>
