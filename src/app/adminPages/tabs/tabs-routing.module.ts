@@ -33,6 +33,10 @@ const routes: Routes = [
         path: 'tab1/cliente/:clienteId/planes/:planId/microciclos/:microId/entrenamiento/:entrenoId',
         loadChildren: () => import('../entrenamiento/entrenamiento.module').then( m => m.EntrenamientoPageModule)
       },
+      {
+        path: 'tab1/cliente/:clienteId/planesRunning/:id',
+        loadChildren: () => import('../running-plan/running-plan.module').then( m => m.RunningPlanPageModule)
+      },
 
       {
         path: '',

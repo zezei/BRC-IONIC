@@ -1,0 +1,90 @@
+<ion-content color="brc">
+    <ion-grid fixed>
+        <ion-row>
+          <ion-col size="12" class="ion-text-center">
+            <ion-label class="titulo">
+              <ion-icon name="calendar-outline"></ion-icon>
+              <h3>{{entreno.fecha._seconds*1000 | date: 'fullDate'}}</h3>
+            </ion-label>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col size="6">
+        <ion-item color="brc">
+          <ion-label position="floating">Medio</ion-label>
+          <ion-select value="running"  interface="action-sheet" placeholder="Select Pizza" [(ngModel)]="entreno.medio">
+              <ion-select-option value="running">Running</ion-select-option>
+              <ion-select-option value="ciclismo">Ciclismo</ion-select-option>
+              <ion-select-option value="trekking">Trekking</ion-select-option>
+              <ion-select-option value="mtb">MTB</ion-select-option>
+              <ion-select-option value="trailrunning">Trail Running</ion-select-option>
+            </ion-select>
+        </ion-item>
+      </ion-col>
+      <ion-col size="6">
+        <ion-item color="brc">
+            <ion-label position="floating">Actividad</ion-label>
+          <ion-select [value]='entreno.actividadPrincipal' interface="action-sheet"  [(ngModel)]="entreno.actividadPrincipal">
+            <ion-select-option value="cv">Contiuno Variable</ion-select-option>
+            <ion-select-option value="ce">Contiuno Estable</ion-select-option>
+            <ion-select-option value="fr">Fraccionado</ion-select-option>
+            <ion-select-option value="pr">Progresivo</ion-select-option>
+            <ion-select-option value="es">Escalonado</ion-select-option>
+            <ion-select-option value="tri">Pasadas Triangulares</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-grid fixed>
+        <ion-row>
+          <ion-col size="12" class="ion-text-left">
+            <ion-label class="titulo">
+              Entrada en calor
+            </ion-label>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <ion-grid fixed>
+        <ion-row>
+          <ion-col size="6">
+            <ion-item color="brc">
+              <ion-label position="floating">Modo</ion-label>
+              <ion-select [(value)]='entradaCalor.modo' interface="action-sheet" (ionChange)="cambio($event)" [(ngModel)]="entradaCalor.modo">
+                  <ion-select-option value="tiempo">Tiempo</ion-select-option>
+                  <ion-select-option value="distancia">Distancia</ion-select-option>
+                </ion-select>
+            </ion-item>
+          </ion-col>
+          <ion-col size="6">
+              <ion-item color="brc">
+                  <ion-label position="floating">Volumen</ion-label>
+                  <ion-datetime *ngIf="entradaCalor.modo === 'tiempo'" displayFormat="mm" [(ngModel)]="entradaCalor.volumen"></ion-datetime>
+                  <ion-input *ngIf="entradaCalor.modo === 'distancia'" type="number" [(ngModel)]="entradaCalor.volumen" [placeholder]="entradaCalor.volumen"></ion-input>
+                </ion-item>
+          </ion-col>
+          <ion-col size="12">
+              <ion-label position="floating">Observaciones</ion-label>
+
+            <ion-textarea [(ngModel)]="entradaCalor.observaciones"></ion-textarea>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+      <ion-grid fixed>
+          <ion-row>
+            <ion-col size="12" class="ion-text-left">
+              <ion-label class="titulo">
+                Parte Principal
+              </ion-label>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+    <ion-row *ngIf="entreno.actividadPrincipal==='cv'">
+      <ion-col size="12">
+          <app-contiuno-variable [contiunoVariable]="entreno.entrada_en_calor.contiuno_variable"></app-contiuno-variable>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

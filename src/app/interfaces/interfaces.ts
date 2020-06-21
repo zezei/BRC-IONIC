@@ -27,6 +27,7 @@
   export interface Microciclo {
     id: string;
     entrenamientos: Entrenamiento[];
+    seleccionado?: boolean;
     nro: string;
     fecha_inicio?: Fecha;
     fecha_fin?: Fecha;
@@ -37,11 +38,16 @@
     id?: string;
     fecha?: Fecha;
     medio?: string;
+    actividadPrincipal?: string;
+    entrada_en_calor?: ActividadRunning;
     ejercicios_entrada_calor?: ParteEntreno[];
     ejercicios_parte_princial?: ParteEntreno[];
     ejercicios_vuelta_a_calma?: ParteEntreno[];
   }
   
+  export interface ActividadRunning{
+    contiuno_variable?: ContiunoVariable;
+  }
   export interface ParteEntreno {
     orden?: string;
     circuito?: Circuito;
@@ -51,22 +57,26 @@
   }
   
   export interface ContiunoVariable{
-    modo: string;
-    duracion?: Date;
-    distancia?: number;
-    desnivelPositivo: number;
-    modoVariable?: string;
+    bloques?: BloqueCV[];
+    distanciaTotal?: string;
+    pausaEntreBloques?: any;
+  }
+
+  export interface BloqueCV{
+    volTipo?: string;
+    vol?: any;
+    desnivel?: number;
+    volTipoVar?: string;
     intensidadA?: string;
     intensidadB?: string;
-    duracionA?: Date;
-    distanciaA?: number;
-    duracionB?: Date;
-    distanciaB?: number;
+    volVarA?: any;
+    volVarB?: any;
+    terreno?: string;
   }
 
   export interface Running {
-    distancia?: number;
-    tiempo?: Date;
+    modo?: string;
+    volumen?: string;
   }
   export interface Fecha {
     _seconds: number;

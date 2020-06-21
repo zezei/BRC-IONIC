@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Entrenamiento, ContiunoVariable } from 'src/app/interfaces/interfaces';
+import { Entrenamiento, ContiunoVariable, ParteEntreno, BloqueCV } from 'src/app/interfaces/interfaces';
 
 @Component({
   selector: 'app-contiuno-variable',
@@ -9,9 +9,17 @@ import { Entrenamiento, ContiunoVariable } from 'src/app/interfaces/interfaces';
 export class ContiunoVariableComponent implements OnInit {
 
 
-  @Input() contiunoVariable: ContiunoVariable;
+  @Input() contiunoVariable: ContiunoVariable = {};
+  cantBloques: Number;
   constructor() { }
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
+
+  addBloque(){
+    let nuevoBloque: BloqueCV = {}
+    this.contiunoVariable.bloques.push(nuevoBloque)
+
+  }
 
 }

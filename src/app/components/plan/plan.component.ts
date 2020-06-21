@@ -19,7 +19,14 @@ export class PlanComponent implements OnInit {
   }
 
   detallePlan(){
-    this.navCtrl.navigateForward(`admin/tabs/tab1/cliente/${this.plan.cliente}/planes/${this.plan.id}`)
+    if (this.plan.tipo !== 'Trail Running'){
+
+      this.navCtrl.navigateForward(`admin/tabs/tab1/cliente/${this.plan.cliente}/planes/${this.plan.id}`)
+    }
+    else{
+      this.navCtrl.navigateForward(`admin/tabs/tab1/cliente/${this.plan.cliente}/planesRunning/${this.plan.id}`,{animated: true})
+
+    }
     // console.log(this.plan)
   }
 }

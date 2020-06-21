@@ -15,6 +15,9 @@ import { EjerciciosSeleccionComponent } from './ejercicios-seleccion/ejercicios-
 import { PipesModule } from '../pipes/pipes.module';
 import { EntrenamientoUserComponent } from './entrenamiento-user/entrenamiento-user.component';
 import { CircuitoUserComponent } from './circuito-user/circuito-user.component';
+import { MicrocicloRunningComponent } from './microciclo-running/microciclo-running.component';
+import { EntrenamientosComponentsModule } from '../entrenamientos-components/entrenamientos-components.module';
+import { EntrenamientoRunningComponent } from './entrenamiento-running/entrenamiento-running.component';
 
 @NgModule({
   declarations: [
@@ -27,13 +30,16 @@ import { CircuitoUserComponent } from './circuito-user/circuito-user.component';
     CircuitoComponent,
     EjerciciosSeleccionComponent,
     EntrenamientoUserComponent,
-    CircuitoUserComponent
+    CircuitoUserComponent,
+    MicrocicloRunningComponent,
+    EntrenamientoRunningComponent
   ],
   imports: [
     CommonModule,
     IonicModule,
     FormsModule,
-    PipesModule
+    PipesModule,
+    EntrenamientosComponentsModule
   ],
   exports: [
     ClientesComponent,
@@ -43,7 +49,8 @@ import { CircuitoUserComponent } from './circuito-user/circuito-user.component';
     ParteEntrenamientoComponent,
     EjerciciosSeleccionComponent,
     EntrenamientoUserComponent,
-    CircuitoUserComponent
+    CircuitoUserComponent,
+    MicrocicloRunningComponent
   ],
 })
 export class ComponentsModule { }

@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule , LOCALE_ID} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 
@@ -22,6 +22,13 @@ import { firebaseConfig } from 'src/environments/firebaseconfig';
 import { IonicStorageModule } from '@ionic/storage';
 
 
+
+import es from '@angular/common/locales/es';
+import { registerLocaleData } from '@angular/common';
+
+registerLocaleData(es);
+
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -38,7 +45,9 @@ import { IonicStorageModule } from '@ionic/storage';
   providers: [
     StatusBar,
     SplashScreen,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    { provide: LOCALE_ID, useValue: 'es-*' } 
+    
   ],
   bootstrap: [AppComponent]
 })
