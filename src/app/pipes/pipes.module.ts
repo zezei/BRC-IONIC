@@ -4,6 +4,7 @@ import { VigentesPipe } from './vigentes.pipe';
 import { BusquedaPipe } from './busqueda.pipe';
 import { ArrayOrderPipe } from './array-order.pipe';
 import { ArregloPorFechaPipe } from './arreglo-por-fecha.pipe';
+import { MinuteSecondsPipe } from './minute-seconds.pipe';
 
 
 
@@ -12,7 +13,8 @@ import { ArregloPorFechaPipe } from './arreglo-por-fecha.pipe';
     VigentesPipe,
     BusquedaPipe,
     ArrayOrderPipe,
-    ArregloPorFechaPipe
+    ArregloPorFechaPipe,
+    MinuteSecondsPipe
   ],
   imports: [
     CommonModule
@@ -21,7 +23,8 @@ import { ArregloPorFechaPipe } from './arreglo-por-fecha.pipe';
     VigentesPipe,
     BusquedaPipe,
     ArrayOrderPipe,
-    ArregloPorFechaPipe
+    ArregloPorFechaPipe,
+    MinuteSecondsPipe
   ]
 })
 export class PipesModule { }

@@ -38,8 +38,9 @@ font-variant: small-caps !important;
 text-transform: none !important;
 }
 
+
 .brc-buttons{
-    color:#1ba567 !important;
+    color:#20a8e9 !important;
 }
 
 p{
@@ -48,6 +49,7 @@ p{
 ion-label{
     color: #c8c7c7 !important;
 }
+
 
 .animated {
     -webkit-animation-duration: 1s;
@@ -109,3 +111,18 @@ ion-label{
     -webkit-animation-name: fadeIn;
     animation-name: fadeIn;
   }
+
+  .mini-cards{
+    height: 230px !important;
+  }
+
+  .expand-wrapper {
+    transition: max-height 0.4s ease-in-out;
+    overflow: hidden;
+    height: auto;
+  }
+
+  // ion-icon{
+  //   color: var(--ion-color-detalles) !important;
+  // }
+  

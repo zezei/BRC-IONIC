@@ -1,0 +1,42 @@
+<ion-grid>
+  <ion-row>
+    <ion-col size="2">
+        <ion-item color="brc-details">
+            <ion-label position="floating">Volumen Total</ion-label>
+            <ion-input type="number" [(ngModel)]="contiunoEstable.vol" [placeholder]="contiunoEstable.vol" (ionChange)="volumenActualizado()"></ion-input>
+          </ion-item>
+    </ion-col>
+      <ion-col size="2">
+          <ion-item color="brc-details">
+              <ion-label position="floating">Unidad</ion-label>
+              <ion-select [(value)]='contiunoEstable.volUnidad' [(ngModel)]="contiunoEstable.volUnidad">
+                  <ion-select-option value="distancia">km</ion-select-option>
+                  <ion-select-option value="tiempo">min</ion-select-option>
+                </ion-select>
+              </ion-item>
+      </ion-col>
+      <ion-col size="2">
+          <ion-item color="brc-details">
+            <ion-label position="floating">RPE</ion-label>
+            <ion-select [(value)]='contiunoEstable.intensidad' [(ngModel)]="contiunoEstable.intensidad">
+                <ion-select-option *ngFor="let zona of dataLocal.zonas" [value]="zona.rpe">{{zona.rpe}}</ion-select-option>
+              </ion-select>
+            </ion-item>
+          </ion-col>
+      <ion-col size="2">
+          <ion-item color="brc-details">
+            
+              <ion-label position="floating">D+</ion-label>
+              <ion-input type="number" [(ngModel)]="contiunoEstable.desnivel" [placeholder]="contiunoEstable.desnivel"></ion-input>
+            </ion-item>
+      </ion-col>
+          <ion-col size="4">
+              <ion-item color="brc-details">
+                <ion-label position="floating">Tipo Terreno</ion-label>
+                <ion-select [(value)]='contiunoEstable.terreno' interface="action-sheet" [(ngModel)]="contiunoEstable.terreno">
+                    <ion-select-option *ngFor="let terreno of dataLocal.terrenos" [value]="terreno.valor">{{terreno.nombre}}</ion-select-option>
+                  </ion-select>
+                </ion-item>
+              </ion-col>
+  </ion-row>
+</ion-grid>

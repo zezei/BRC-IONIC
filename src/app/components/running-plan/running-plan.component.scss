@@ -1,0 +1,20 @@
+.graficos{
+    height: 240px !important;
+    width: 100% !important;
+}
+
+ion-img{
+    height: 40px !important;
+    width: 40px !important;
+}
+
+.dropdown{
+    height: 30px !important;
+    width: 30px !important;
+    color: var(--ion-color-primary) !important;
+}
+
+.dropdown:hover{
+    cursor: pointer;
+    color: var(--ion-color-detalles) !important;
+}

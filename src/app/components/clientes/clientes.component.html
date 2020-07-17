@@ -1,20 +1,22 @@
+<ion-card color="terciario">
+  
+  <ion-list *ngIf="!clientes">
+    <ion-item *ngFor="let i of [1,2,3,4,5,6,7,8,9,10,1,1,1,1]" color="terciario">
+      <ion-label>
+        <ion-skeleton-text animated style="width: 65%"></ion-skeleton-text>
+      </ion-label>
+      <ion-skeleton-text slot="end" animated style="width: 5%"></ion-skeleton-text>
+    </ion-item>
+  </ion-list>
+  <ion-list *ngIf="clientes">
+    <ion-item *ngFor="let cliente of clientes" detail (click)="verCliente(cliente)" color="terciario">
+      <ion-label>
+        <h2>
+          {{cliente.nombre}}, <strong>{{cliente.apellido}}</strong>
+        </h2>
+        <p>{{cliente.email}}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
 
-<ion-list *ngIf="clientes === null" color="brc">
-  <ion-item *ngFor="let i of [1,2,3,4,5,6,7,8,9,10,1,1,1,1]" color="brc">
-    <ion-label>
-      <ion-skeleton-text animated style="width: 65%"></ion-skeleton-text>
-    </ion-label>
-    <ion-skeleton-text slot="end" animated style="width: 5%"></ion-skeleton-text>
-  </ion-item>
-</ion-list>
-<ion-list color="brc" *ngIf="clientes">
-  <ion-item *ngFor="let cliente of clientes" detail
-    (click)="verCliente(cliente)" color="brc">
-    <ion-label>
-      <h2>
-        {{cliente.nombre}}, <strong>{{cliente.apellido}}</strong>
-      </h2>
-      <p>{{cliente.email}}</p>
-    </ion-label>
-  </ion-item>
-</ion-list>
+</ion-card>

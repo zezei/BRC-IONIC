@@ -20,6 +20,11 @@ const routes: Routes = [
     path: 'users',
     loadChildren: () => import('./userPages/tabs/tabs.module').then( m => m.TabsPageModule)
   },
+  {
+    path: 'vinculado/:uid',
+    loadChildren: () => import('./userPages/vinculado/vinculado.module').then( m => m.VinculadoPageModule)
+  },
+
 
 
 

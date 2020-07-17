@@ -1,0 +1,38 @@
+
+<ion-grid>
+  <ion-row>
+    <ion-col size="12" class="ion-no-padding">
+      <ion-card color="secundario">
+        <ion-card-title>
+          <ion-item color="secundario">
+            <h3>Plan Anterior</h3>
+            <ion-button slot="end" (click)="showPlanAnterior()" expand="block" shape="round">
+              Ver
+            </ion-button>
+          </ion-item>
+        </ion-card-title>
+        <ion-card-content *ngIf="mostarAnterior" class="ion-no-padding expand-wrapper">
+          <app-running-plan *ngIf="planAnterior" [plan]="planAnterior"></app-running-plan>
+          <!-- APP plan [plan]="plan anterior" -->
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+    <ion-col size="12" class="ion-no-padding">
+        <ion-card color="secundario">
+            <ion-card-title>
+                <ion-item color="secundario">
+                    <h3>Plan Actual</h3>
+                    <ion-button slot="end" (click)="showPlanActual()" expand="block" shape="round">
+                      Ver
+                    </ion-button>
+                  </ion-item>
+            </ion-card-title>
+            <ion-card-content *ngIf="mostrarActual" class="ion-no-padding expand-wrapper">
+                <app-running-plan *ngIf="planActual" [plan]="planActual"></app-running-plan>
+
+            </ion-card-content>
+          </ion-card>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+

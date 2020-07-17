@@ -1,90 +1,221 @@
-<ion-content color="brc">
-    <ion-grid fixed>
-        <ion-row>
-          <ion-col size="12" class="ion-text-center">
-            <ion-label class="titulo">
-              <ion-icon name="calendar-outline"></ion-icon>
-              <h3>{{entreno.fecha._seconds*1000 | date: 'fullDate'}}</h3>
-            </ion-label>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-  <ion-grid fixed>
+<ion-content color="primario">
+  <ion-grid>
     <ion-row>
-      <ion-col size="6">
-        <ion-item color="brc">
-          <ion-label position="floating">Medio</ion-label>
-          <ion-select value="running"  interface="action-sheet" placeholder="Select Pizza" [(ngModel)]="entreno.medio">
-              <ion-select-option value="running">Running</ion-select-option>
-              <ion-select-option value="ciclismo">Ciclismo</ion-select-option>
-              <ion-select-option value="trekking">Trekking</ion-select-option>
-              <ion-select-option value="mtb">MTB</ion-select-option>
-              <ion-select-option value="trailrunning">Trail Running</ion-select-option>
-            </ion-select>
-        </ion-item>
-      </ion-col>
-      <ion-col size="6">
-        <ion-item color="brc">
-            <ion-label position="floating">Actividad</ion-label>
-          <ion-select [value]='entreno.actividadPrincipal' interface="action-sheet"  [(ngModel)]="entreno.actividadPrincipal">
-            <ion-select-option value="cv">Contiuno Variable</ion-select-option>
-            <ion-select-option value="ce">Contiuno Estable</ion-select-option>
-            <ion-select-option value="fr">Fraccionado</ion-select-option>
-            <ion-select-option value="pr">Progresivo</ion-select-option>
-            <ion-select-option value="es">Escalonado</ion-select-option>
-            <ion-select-option value="tri">Pasadas Triangulares</ion-select-option>
-          </ion-select>
-        </ion-item>
-      </ion-col>
-    </ion-row>
-    <ion-grid fixed>
-        <ion-row>
-          <ion-col size="12" class="ion-text-left">
-            <ion-label class="titulo">
-              Entrada en calor
-            </ion-label>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-      <ion-grid fixed>
-        <ion-row>
-          <ion-col size="6">
-            <ion-item color="brc">
-              <ion-label position="floating">Modo</ion-label>
-              <ion-select [(value)]='entradaCalor.modo' interface="action-sheet" (ionChange)="cambio($event)" [(ngModel)]="entradaCalor.modo">
-                  <ion-select-option value="tiempo">Tiempo</ion-select-option>
-                  <ion-select-option value="distancia">Distancia</ion-select-option>
-                </ion-select>
-            </ion-item>
-          </ion-col>
-          <ion-col size="6">
-              <ion-item color="brc">
-                  <ion-label position="floating">Volumen</ion-label>
-                  <ion-datetime *ngIf="entradaCalor.modo === 'tiempo'" displayFormat="mm" [(ngModel)]="entradaCalor.volumen"></ion-datetime>
-                  <ion-input *ngIf="entradaCalor.modo === 'distancia'" type="number" [(ngModel)]="entradaCalor.volumen" [placeholder]="entradaCalor.volumen"></ion-input>
-                </ion-item>
-          </ion-col>
-          <ion-col size="12">
-              <ion-label position="floating">Observaciones</ion-label>
-
-            <ion-textarea [(ngModel)]="entradaCalor.observaciones"></ion-textarea>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-
-      <ion-grid fixed>
-          <ion-row>
-            <ion-col size="12" class="ion-text-left">
-              <ion-label class="titulo">
-                Parte Principal
-              </ion-label>
-            </ion-col>
-          </ion-row>
-        </ion-grid>
-    <ion-row *ngIf="entreno.actividadPrincipal==='cv'">
-      <ion-col size="12">
-          <app-contiuno-variable [contiunoVariable]="entreno.entrada_en_calor.contiuno_variable"></app-contiuno-variable>
+      <ion-col size="12" class="ion-text-center">
+        <ion-label >
+          <ion-icon name="calendar-outline"></ion-icon>
+          <h3>{{entreno.fecha._seconds*1000 | date: 'fullDate' | uppercase}}</h3>
+        </ion-label>
       </ion-col>
     </ion-row>
   </ion-grid>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="6">
+        <ion-item color="primario">
+          <ion-label position="floating">Medio</ion-label>
+          <ion-select [(value)]="entreno.medio" [(ngModel)]="entreno.medio" (ionChange)="medioSeleccionado()" >
+            <ion-select-option *ngFor="let medio of dataLocal.medios"
+              [value]="medio.nombre">{{medio.nombre}} </ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+      <ion-col size="6">
+        <ion-item color="primario">
+          <ion-label position="floating">Categoria</ion-label>
+          <ion-select [(ngModel)]="entreno.actividad" [(value)]="entreno.actividad" >
+            <ion-select-option *ngFor="let actividad of actividades" [value]="actividad.nombre">{{actividad.nombre}}
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+      <ion-col size="4">
+        <ion-label>
+          <h3>
+            Volumen Progrmado: 
+          </h3>
+          <p>
+            {{entreno.volTotalEstimado | minuteSeconds}} hs
+          </p>
+
+        </ion-label>
+      </ion-col>
+      <ion-col size="4">
+          <ion-label>
+            <h3>
+              Desnivel: 
+            </h3>
+            <p>
+              <!-- Desnivel -->
+              {{entreno.desnivelTotal}} mts
+            </p>
+  
+          </ion-label>
+        </ion-col>
+    </ion-row>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="12" class="ion-text-left">
+          <ion-label >
+            Entrada en calor
+          </ion-label>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <ion-card color="primario">
+
+      <ion-grid>
+        <ion-row>
+          <ion-col size="2">
+            <ion-item color="primario">
+              <ion-label position="floating">Volumen</ion-label>
+              <ion-input type="number" [(ngModel)]="entreno.entrada_calor_running.volumen"
+                [placeholder]="entreno.entrada_calor_running.volumen"></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col size="3">
+            <ion-item color="primario">
+              <ion-label position="floating">Unidad</ion-label>
+              <ion-select [(value)]='entreno.entrada_calor_running.volUnidad'
+                [(ngModel)]="entreno.entrada_calor_running.volUnidad">
+                <ion-select-option value="tiempo">min</ion-select-option>
+                <ion-select-option value="distancia">km</ion-select-option>
+              </ion-select>
+            </ion-item>
+          </ion-col>
+          <ion-col size="3">
+            <ion-item color="primario">
+              <ion-label position="floating">RPE</ion-label>
+              <ion-select [(value)]='entreno.entrada_calor_running.intensidad'
+                [(ngModel)]="entreno.entrada_calor_running.intensidad">
+                <ion-select-option *ngFor="let zona of dataLocal.zonas" [value]="zona.rpe">{{zona.rpe}}
+                </ion-select-option>
+              </ion-select>
+            </ion-item>
+          </ion-col>
+          <ion-col size="4">
+            <ion-item color="primario">
+              <ion-label position="floating">Observaciones</ion-label>
+
+              <ion-textarea [(ngModel)]="entreno.entrada_calor_running.observaciones"></ion-textarea>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card>
+
+    <ion-grid>
+      <ion-row>
+        <ion-col size="12" class="ion-text-left">
+          <ion-label >
+            Parte Principal {{entreno.actividadPrincipal}}
+          </ion-label>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <ion-row class="animated fadeIn">
+        <ion-col size="12">
+            <ion-item color="primario">
+              <ion-label position="floating">Actividad</ion-label>
+              <ion-select [value]='entreno.actividadPrincipal' (ionChange)="createActividad()"
+                [(ngModel)]="entreno.actividadPrincipal">
+                <ion-select-option *ngFor="let tipoEntreno of dataLocal.tiposEtrenosRunning" [value]="tipoEntreno.valor">
+                  {{tipoEntreno.nombre}}</ion-select-option>
+              </ion-select>
+            </ion-item>
+          </ion-col>
+      <ion-col size="12" *ngIf="entreno.actividadPrincipal==='cv'">
+        <ion-card color="primario">
+          <app-contiuno-variable [contiunoVariable]="entreno.parte_principal.contiuno_variable"
+            (actualizarVolumen)="actualizarEntrenoVol($event)"></app-contiuno-variable>
+
+        </ion-card>
+      </ion-col>
+      <ion-col size="12" *ngIf="entreno.actividadPrincipal==='ce'">
+        <ion-card color="primario">
+          <app-contiuno-estable [contiunoEstable]="entreno.parte_principal.contiuno_estable"
+            (actualizarVolumen)="actualizarEntrenoVol($event)"></app-contiuno-estable>
+
+        </ion-card>
+      </ion-col>
+      <ion-col size="12" *ngIf="entreno.actividadPrincipal==='fr'">
+        <ion-card color="primario">
+          <app-fraccionado [fraccionado]="entreno.parte_principal.fraccionado"
+            (actualizarVolumen)="actualizarEntrenoVol($event)"></app-fraccionado>
+
+        </ion-card>
+      </ion-col>
+      <ion-col size="12" *ngIf="entreno.actividadPrincipal==='pr'">
+        <ion-card color="primario">
+          <app-progresivo [progresivo]="entreno.parte_principal.progresivo"
+            (actualizarVolumen)="actualizarEntrenoVol($event)"></app-progresivo>
+
+        </ion-card>
+      </ion-col>
+    </ion-row>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="12" class="ion-text-left">
+          <ion-label >
+            Vuelta a la calma
+          </ion-label>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <ion-card color="primario">
+
+      <ion-grid>
+        <ion-row>
+          <ion-col size="2">
+            <ion-item color="primario">
+              <ion-label position="floating">Volumen</ion-label>
+              <ion-input type="number" [(ngModel)]="entreno.vuelta_a_calma_running.volumen"
+                [placeholder]="entreno.vuelta_a_calma_running.volumen"></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col size="3">
+            <ion-item color="primario">
+              <ion-label position="floating">Unidad</ion-label>
+              <ion-select [(value)]='entreno.vuelta_a_calma_running.volUnidad'
+                [(ngModel)]="entreno.vuelta_a_calma_running.volUnidad">
+                <ion-select-option value="tiempo">min</ion-select-option>
+                <ion-select-option value="distancia">km</ion-select-option>
+              </ion-select>
+            </ion-item>
+          </ion-col>
+          <ion-col size="3">
+            <ion-item color="primario">
+              <ion-label position="floating">Intensidad</ion-label>
+              <ion-select [(value)]='entreno.vuelta_a_calma_running.intensidad'
+                [(ngModel)]="entreno.vuelta_a_calma_running.intensidad">
+                <ion-select-option *ngFor="let zona of dataLocal.zonas" [value]="zona.rpe">{{zona.rpe}}
+                  </ion-select-option>
+
+              </ion-select>
+            </ion-item>
+          </ion-col>
+          <ion-col size="4">
+            <ion-item color="primario">
+              <ion-label position="floating">Observaciones</ion-label>
+
+              <ion-textarea [(ngModel)]="entreno.vuelta_a_calma_running.observaciones"></ion-textarea>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card>
+  </ion-grid>
+
+  <ion-fab vertical="top" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="guardar()" color="detalles">
+      <ion-icon name="save-outline" *ngIf="!guardando"></ion-icon>
+      <ion-spinner name="circular" *ngIf="guardando"></ion-spinner>
+    </ion-fab-button>
+  </ion-fab>
+  <ion-fab vertical="top" horizontal="start" slot="fixed">
+    <ion-fab-button (click)="cancelar()" color="detalles">
+      <ion-icon name="close-outline"></ion-icon>
+
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>

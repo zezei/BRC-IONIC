@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment';
 
 import { Storage } from '@ionic/storage';
 import { NavController } from '@ionic/angular';
+import { Cliente } from '../interfaces/interfaces';
 
 
 const URL = environment.url;
@@ -13,9 +14,64 @@ const URL = environment.url;
   providedIn: 'root'
 })
 export class CommonService {
+
+
+  
   token = '';
   userAdmin: boolean = false;
   decodedUser: any;
+
+  climas = [
+    {
+      valor: 1,
+      imagen: 'assets/imgs/frio.png',
+      seleccionado: false
+    },
+    {
+      valor: 2,
+      imagen: 'assets/imgs/soleado-lluvia.png',
+      seleccionado: false
+    },
+    {
+      valor: 3,
+      imagen: 'assets/imgs/soleado.png',
+      seleccionado: false
+    },
+  ]
+  rpes = [
+    {
+      valor: 1,
+      imagen: 'assets/imgs/1.png',
+      seleccionado: false
+    },
+    {
+      valor: 2,
+      imagen: 'assets/imgs/2.svg',
+      seleccionado: false
+    },
+    {
+      valor: 3,
+      imagen: 'assets/imgs/3.png',
+      seleccionado: false
+    },
+    {
+      valor: 4,
+      imagen: 'assets/imgs/4.png',
+      seleccionado: false
+    },
+    {
+      valor: 5,
+      imagen: 'assets/imgs/5.png',
+      seleccionado: false
+    },
+    {
+      valor: 6,
+      imagen: 'assets/imgs/6.png',
+      seleccionado: false
+    },
+  ]
+
+  cliente: Cliente;
   constructor(private auth: AngularFireAuth, private http: HttpClient, private storage: Storage, private navCtrl: NavController) { }
 
 
@@ -100,4 +156,21 @@ export class CommonService {
       })
     })
   }
+
+  getStravaActivities(fechaInicio, fechaFin){
+    return new Promise<any[]>( resolve=>{
+      this.http.post(`https://www.strava.com/oauth/token?client_id=26310&client_secret=bacaf01b8567d3c7bcaf9a003043e2b206e14ddb&refresh_token=${this.cliente.strava_code}&grant_type=refresh_token`,'').subscribe((data:any)=>{
+        // this.http.get(`https://www.strava.com/api/v3/athlete/activities?before=${fechaInicio}&after=${fechaFin}&access_token=${data.access_token}`).subscribe((dataa: any[])=>resolve(dataa));
+        this.http.get(`https://www.strava.com/api/v3/athlete/activities?after=${fechaInicio}&before=${fechaFin}&access_token=${data.access_token}`).subscribe((dataa: any[])=>resolve(dataa));
+
+        // this.http.get(`https://www.strava.com/api/v3/activities/2543825480?access_token=${data.access_token}`).subscribe(dataaa=>console.log(dataaa));
+      })
+
+      //`https://www.strava.com/api/v3/activities/${act}?access_token=${data.access_token}`
+
+    })
+  }
+
+
+
 }

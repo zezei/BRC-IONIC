@@ -1,5 +1,5 @@
-<ion-header [translucent]="true" class="ion-no-border">
-  <ion-toolbar color="brc">
+<ion-header [translucent]="true">
+  <ion-toolbar color="secundario">
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
@@ -14,11 +14,11 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true" color="brc">
+<ion-content [fullscreen]="true" color="primario">
   <app-clientes [clientes]="clientes"></app-clientes>
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-      <ion-fab-button (click)="agregarCliente()">
+      <ion-fab-button (click)="agregarCliente()" color="detalles">
         <ion-icon name="add"></ion-icon>
       </ion-fab-button>
     </ion-fab>

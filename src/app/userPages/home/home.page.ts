@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
 import { Plan, Microciclo } from 'src/app/interfaces/interfaces';
 import { CommonService } from 'src/app/services/common.service';
+import { InAppBrowser } from '@ionic-native/in-app-browser/ngx/';
 import { IonSlides, NavController } from '@ionic/angular';
 
 @Component({
@@ -31,7 +32,7 @@ export class HomePage implements OnInit {
   value = '';
   today = new Date();
   @ViewChild('mainSlide') mainSlide: IonSlides; 
-  constructor(public userService: UserService, private commonService: CommonService, private navCtrl: NavController) { }
+  constructor(public userService: UserService, private commonService: CommonService, private navCtrl: NavController, private iab: InAppBrowser) { }
 
   async ngOnInit() {
     await this.commonService.verificarUserToken()
@@ -78,5 +79,10 @@ export class HomePage implements OnInit {
   verSemana(microciclo: Microciclo){
     this.userService.microcicloSeleccionado = microciclo;
     this.navCtrl.navigateForward('users/tabs/home/semana', {animated: true})
+  }
+
+  getStrava(){
+    const browser = this.iab.create(`https://www.strava.com/oauth/authorize?client_id=26310&redirect_uri=http://localhost:5000/planesbrc/us-central1/api/strava_token?cliente=${this.commonService.decodedUser.uid}&response_type=code&scope=activity:read_all`,'_system');
+    this.userService.getStravaActivities()
   }
 }

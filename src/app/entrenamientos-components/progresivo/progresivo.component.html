@@ -1,0 +1,98 @@
+<ion-grid>
+  <ion-row>
+    <ion-col size="6">
+      <ion-item color="brc-details">
+        <ion-label>
+          <h3>
+
+            Volumen Total
+          </h3>
+          <h3>{{progresivo.volTotal}}</h3>
+        </ion-label>
+      </ion-item>
+    </ion-col>
+    <ion-col size="6">
+        <ion-item color="brc-details">
+          <ion-label position="floating">D+</ion-label>
+          <ion-input type="number" [(ngModel)]="progresivo.desnivel" [placeholder]="progresivo.desnivel"></ion-input>
+        </ion-item>
+      </ion-col>
+    <ion-col size="4">
+      <ion-item color="brc-details">
+        <ion-label position="floating">Series</ion-label>
+        <ion-input type="text" [(ngModel)]="progresivo.series"></ion-input>
+      </ion-item>
+    </ion-col>
+    <ion-col size="4" *ngIf="progresivo.series > 1">
+      <ion-label position="floating">Pausa e/series</ion-label>
+      <ion-input type="text" [(ngModel)]="progresivo.pausaEntreSeries"></ion-input>
+    </ion-col>
+    <ion-col size="4" *ngIf="progresivo.series > 1">
+      <ion-item color="brc-details">
+        <ion-label position="floating">Intensidad Pausa</ion-label>
+
+        <ion-select [value]="progresivo.intensidadPausa" [(ngModel)]="progresivo.intensidadPausa">
+          <ion-select-option *ngFor="let intensidad of dataLocal.intensidades" [value]="intensidad.valor">
+            {{intensidad.nombre}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-col>
+
+    <ion-col size="12" class="ion-text-center">
+        <ion-item color="brc-details">
+          <ion-label position="floating">Tipo Volumen</ion-label>
+          <ion-select [(value)]='progresivo.volTipo' interface="action-sheet" [(ngModel)]="progresivo.volTipo">
+            <ion-select-option value="distancia">Distancia (kms)</ion-select-option>
+            <ion-select-option value="tiempo">Tiempo (min)</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+    <ion-col size="12">
+      <ion-item color="brc-details">
+        <ion-label>
+          <h2>
+              Bloques {{progresivo.bloques.length}}
+          </h2></ion-label>
+        <ion-button (click)="addBloque()" shape="round">
+          +1
+        </ion-button>
+      </ion-item>
+    </ion-col>
+    <ion-col size="12" *ngFor="let bloque of progresivo.bloques; let i=index;">
+      <ion-card color="brc-details">
+        <ion-row>
+          <ion-col size="12">
+            <ion-item color="brc-details">
+              <ion-label>Bloque {{i}}</ion-label>
+              <ion-button (click)="removerBloque(i)" fill="solid" shape="round" color="danger">
+                Remover
+              </ion-button>
+            </ion-item>
+
+          </ion-col>
+        </ion-row>
+        <ion-row>
+
+          <ion-col size="6">
+            <ion-item color="brc-details">
+              <ion-label position="floating">Volumen</ion-label>
+              <ion-input type="number" [(ngModel)]="bloque.vol" [placeholder]="bloque.vol" (ionChange)="sumar()">
+              </ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col size="6">
+            <ion-item color="brc-details">
+              <ion-label position="floating">Intensidad</ion-label>
+              <ion-select [(value)]='bloque.intensidad' interface="action-sheet" [(ngModel)]="bloque.intensidad">
+                <ion-select-option *ngFor="let intensidad of dataLocal.intensidades" [value]="intensidad.valor">
+                  {{intensidad.nombre}}</ion-select-option>
+              </ion-select>
+            </ion-item>
+          </ion-col>
+
+        </ion-row>
+
+      </ion-card>
+    </ion-col>
+  </ion-row>
+</ion-grid>

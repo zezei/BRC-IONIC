@@ -1,0 +1,48 @@
+<ion-card color="secundario" class="mini-cards">
+  <ion-card-title>
+    <ion-item lines='none' color="secundario">
+      <ion-img class="avatar" slot="start" src="/assets/imgs/user_hombre.png"></ion-img>
+      <h3>{{cliente.nombre}}</h3>
+      <ion-icon slot="end" name="create-sharp"></ion-icon>
+    </ion-item>
+
+  </ion-card-title>
+  <ion-card-content class="ion-no-padding">
+    
+    <ion-grid fixed>
+      <ion-row>
+        <ion-col size="6" class="ion-no-padding">
+          <ion-item lines='none' color="secundario">
+              <ion-img slot="start" src="/assets/imgs/peso.png"></ion-img>
+
+            <p>82K</p>
+          </ion-item>
+        </ion-col>
+        <ion-col size="6" class="ion-no-padding">
+          <ion-item lines='none' color="secundario">
+              <ion-img slot="start" src="/assets/imgs/altura.png"></ion-img>
+            <p>1.82cm</p>
+          </ion-item>
+        </ion-col>
+        <ion-col size="6" class="ion-no-padding">
+          <ion-item lines='none' color="secundario">
+              <ion-img slot="start" src="/assets/imgs/mail.png"></ion-img>
+            <p>{{cliente.email}}</p>
+          </ion-item>
+        </ion-col>
+        <ion-col size="6" class="ion-no-padding">
+          <ion-item lines='none' color="secundario">
+            <ion-icon slot="start" name="call-sharp"></ion-icon>
+            <p>{{cliente.telefono}}</p>
+          </ion-item>
+        </ion-col>
+        <ion-col size="12" class="ion-no-padding">
+          <ion-item lines='none' color="secundario">
+            <ion-img slot="start" src="/assets/imgs/stravalogo.png"></ion-img>
+            <p>  {{cliente.strava_code ? 'vinculado': 'No vinculado'}}</p>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card-content>
+  </ion-card>

@@ -31,6 +31,7 @@ export class ClientePage implements OnInit {
 
   cliente: Cliente = {};
   loading: boolean = true;
+  planSeleccionado: Plan;
   constructor(private adminService: AdminService, private activatedRoute: ActivatedRoute, private modalCtrl: ModalController) { }
 
   ngOnInit() {
@@ -38,6 +39,13 @@ export class ClientePage implements OnInit {
     this.adminService.getCliente(id).subscribe(data=>{
       if (data['ok']){
         this.cliente = data['clienteData']
+        if (this.cliente.planes.length > 0){
+          this.planSeleccionado = this.cliente.planes[0]
+        }
+        else{
+          this.planSeleccionado = {}
+        }
+        console.log(this.cliente)
         this.loading = false;
       }
     })
@@ -55,6 +63,12 @@ export class ClientePage implements OnInit {
       }
     });
     await modal.present();
+
+  }
+
+  seleccionarPlan(event: Plan){
+    this.planSeleccionado = event;
+    console.log(event)
 
   }
   

@@ -1,4 +1,4 @@
-<ion-content color="brc">
+<ion-content color="primario">
 
 
   <ion-slides class="mainSlide" #slidePrincipal>
@@ -12,13 +12,13 @@
           </ion-row>
           <ion-row>
             <ion-col>
-              <ion-list color="brc">
-                <ion-item color="brc">
+              <ion-list color="primario">
+                <ion-item color="primario">
                   <ion-label>Email</ion-label>
                   <ion-input name="email" type="email" required [(ngModel)]="loginUser.email"></ion-input>
                 </ion-item>
 
-                <ion-item color="brc">
+                <ion-item color="primario">
                   <ion-label>Password</ion-label>
                   <ion-input name="password" type="password" required [(ngModel)]="loginUser.password"></ion-input>
                 </ion-item>
@@ -29,10 +29,10 @@
 
           <ion-row>
             <ion-col>
-              <ion-button type="submit" color="tertiary" shape="round" *ngIf="!iniciandoSesion">
+              <ion-button type="submit" color="detalles" shape="round" *ngIf="!iniciandoSesion">
                 Login
               </ion-button>
-              <ion-spinner color="tertiary" *ngIf="iniciandoSesion" name="bubbles"></ion-spinner>
+              <ion-spinner color="detalles" *ngIf="iniciandoSesion" name="bubbles"></ion-spinner>
             </ion-col>
           </ion-row>
 

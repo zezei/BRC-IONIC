@@ -1,0 +1,71 @@
+<ion-card color="secundario">
+  <ion-card-title>
+    
+  </ion-card-title>
+  <ion-card-content color="secundario">
+    <ion-grid fixed>
+        <ion-row>
+            <ion-col size="12" class="detallePlan">
+              <ion-slides [options]="semanasOpt">
+                <ion-slide
+                  *ngFor='let microciclo of microciclos | arrayOrder: "fecha_inicio": "_seconds"; let i = index'>
+                  <div (click)="seleccionar(microciclo)" class="week"
+                    [ngClass]="{ 'microciclo-seleccionado': microciclo.seleccionado}">
+                    <ion-avatar>
+                      <img src="/assets/imgs/semana{{i+1}}.png" />
+                    </ion-avatar>
+                  <p>{{microciclo.fecha_inicio._seconds*1000 | date:'dd/MM'}}</p>
+
+                  </div>
+                </ion-slide>
+              </ion-slides>
+            </ion-col>
+            <ion-col size="12" class="ion-text-center">
+                <ion-grid>
+                  <ion-row>
+                    <ion-col size="4">
+                      <h4>Vol T</h4>
+                        <img src="/assets/imgs/pasos.png">
+                        <p>
+                         123 Km
+                        </p>
+                    </ion-col>
+                    <ion-col size="4">
+                      <h4>D+</h4>
+                      <img src="/assets/imgs/desnivel.png">
+                      <p>
+                        1200 mts
+                      </p>
+                    </ion-col>
+                    <ion-col size="4">
+                      <ion-label>Completos</ion-label>
+                      <div class="circle-container">
+                        <circle-progress
+                        [percent]="85"
+                        [radius]="30"
+                        [outerStrokeWidth]="3"
+                        [innerStrokeWidth]="1"
+                        [outerStrokeColor]="'#78C000'"
+                        [innerStrokeColor]="'#C7E596'"
+                        [animation]="true"
+                        [animationDuration]="300"
+                        [titleFontSize]="10"
+                        [titleColor]="'#e9dede'"
+                        [unitsColor]="'#e9dede'"
+                        style="fill: #e9dede;"
+
+                      ></circle-progress>
+
+
+                      </div>
+                    </ion-col>
+
+
+                  </ion-row>
+                </ion-grid>
+            </ion-col>
+          </ion-row>
+
+    </ion-grid>
+  </ion-card-content>
+</ion-card>

@@ -1,5 +1,5 @@
 <ion-header>
-    <ion-toolbar color="brc">
+    <ion-toolbar color="secundario">
       <ion-buttons slot="start">
         <ion-back-button defaultHref="/"></ion-back-button>
       </ion-buttons>
@@ -7,138 +7,31 @@
     </ion-toolbar>
   </ion-header>
   
-  <ion-content color="brc">
-    <div *ngIf="!loading" >
-    <ion-card ios color="brc-details">
+  <ion-content color="primario">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="12" size-sm="6" size-md="6" size-lg="4" class="ion-no-padding">
 
-      <ion-card-content color="brc-details">
-          <ion-item color="brc-details">
-              <ion-icon slot="start" name="person-circle-outline"></ion-icon>
-              <ion-label> {{cliente.nombre}} {{cliente.apellido}}</ion-label>
-            </ion-item>
-        <ion-item color="brc-details">
-          <ion-icon slot="start" name="call-outline"></ion-icon>
-          <ion-label>{{cliente.telefono}}</ion-label>
-        </ion-item>
-        <ion-item color="brc-details">
-          <ion-icon slot="start" name="mail-outline"></ion-icon>
-          <ion-label>{{cliente.email}}</ion-label>
-        </ion-item>
-      </ion-card-content>
-    </ion-card>
-    <ion-grid fixed>
-        <ion-row>
-          <ion-col size="12" class="ion-text-center">
-            <ion-label class="titulo">Planes Vigentes</ion-label>
+          <app-cliente-profile *ngIf="!loading" [cliente]="cliente"></app-cliente-profile>
+        </ion-col>
+        <ion-col size="12" size-sm="6" size-md="6" size-lg="4" class="ion-no-padding" *ngIf="cliente.planes">
+          <app-planes-card [planesVigentes]="cliente.planes" (cambiarPlan)="seleccionarPlan($event)"></app-planes-card>
+        </ion-col>
+        <ion-col size="12" size-sm="6" size-md="6"  size-lg="4" *ngIf="cliente.planes">
+          <app-plan-stats-card [plan]="planSeleccionado"></app-plan-stats-card>
+        </ion-col>
+        <ion-col size="12" size-sm="6" size-md="6" size-lg="6" *ngIf="cliente.planes">
+          <app-microciclos-card-detail [microciclos]="planSeleccionado.microciclos"></app-microciclos-card-detail>
           </ion-col>
-        </ion-row>
-      </ion-grid>
-    <ion-slides mode="ios" [options]="slidesOpt">
-      <ion-slide *ngFor="let plan of cliente.planes | vigentes: true">
-        <app-plan [plan]="plan"></app-plan>
-        <ion-ripple-effect></ion-ripple-effect>
+      </ion-row>
 
-      </ion-slide>
-      <ion-slide *ngIf="(cliente.planes | vigentes: true).length === 0">
-        <h3 class="ion-text-center" style="color: #c8c7c7">No hay planes vigentes</h3>
-      </ion-slide>
-
-    </ion-slides>
-    <ion-grid fixed>
-        <ion-row>
-          <ion-col size="12" class="ion-text-center">
-            <ion-label class="titulo">Historial</ion-label>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-      <ion-slides mode="ios" [options]="slidesOpt">
-          <ion-slide *ngFor="let plan of cliente.planes | vigentes: false">
-              <app-plan [plan]="plan"></app-plan>
-            </ion-slide>
-        </ion-slides>
-
+    </ion-grid>
     <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-        <ion-fab-button (click)="openNuevoPlan()">
+        <ion-fab-button (click)="openNuevoPlan()" color="detalles">
           <ion-icon name="add"></ion-icon>
         </ion-fab-button>
       </ion-fab>
-    </div>
-    <div *ngIf="loading">
-        <ion-card ios color="brc-details">
-          <ion-item color="brc-details">
-            <ion-label slot="start"><ion-skeleton-text animated style="width: 10"></ion-skeleton-text></ion-label>
-            
-            <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
-          </ion-item>
-          <ion-card-content color="brc-details">
-            <ion-item color="brc-details">
-                <ion-skeleton-text animated style="width: 20"></ion-skeleton-text>
-                <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
-            </ion-item>
-            <ion-item color="brc-details">
-                <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
-            </ion-item>
-          </ion-card-content>
-        </ion-card>
-        <ion-grid fixed>
-            <ion-row>
-              <ion-col size="12" class="ion-text-center">
-                
-                <ion-label class="titulo">Planes Vigentes</ion-label>
-                
-              </ion-col>
-            </ion-row>
-          </ion-grid>
-          <ion-slides mode="ios" pager="ios" [options]="slidesOpt">
-            <ion-slide *ngFor="let item of [1,2,3,4]">
 
-              <ion-card ios color="brc-details" style="width: 300px; height: 200px;">
-                  <ion-item color="brc-details">
-                    <ion-skeleton-text animated style="width: 20"></ion-skeleton-text>
-                    <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
-                  </ion-item>
-                  <ion-card-content color="brc-details">
-                    <ion-item color="brc-details">
-                        <ion-skeleton-text animated style="width: 20"></ion-skeleton-text>
-                        <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
-                    </ion-item>
-                    <ion-item color="brc-details">
-                        <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
-                    </ion-item>
-                  </ion-card-content>
-                </ion-card>
-            </ion-slide>
-          </ion-slides>
-            <ion-grid fixed>
-                <ion-row>
-                  <ion-col size="12" class="ion-text-center">
-                    
-                    <ion-label class="titulo">Historial</ion-label>
-                    
-                  </ion-col>
-                </ion-row>
-              </ion-grid>
-              <ion-slides mode="ios" pager="ios" [options]="slidesOpt">
-                  <ion-slide *ngFor="let item of [1,2,3,4]">
-      
-                    <ion-card ios color="brc-details" style="width: 300px; height: 200px;">
-                        <ion-item color="brc-details">
-                          <ion-skeleton-text animated style="width: 20"></ion-skeleton-text>
-                          <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
-                        </ion-item>
-                        <ion-card-content color="brc-details">
-                          <ion-item color="brc-details">
-                              <ion-skeleton-text animated style="width: 20"></ion-skeleton-text>
-                              <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
-                          </ion-item>
-                          <ion-item color="brc-details">
-                              <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
-                          </ion-item>
-                        </ion-card-content>
-                      </ion-card>
-                  </ion-slide>
-                </ion-slides>
-  </div>
   </ion-content>
 
  

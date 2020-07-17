@@ -1,0 +1,32 @@
+ion-img{
+    border-radius: 50%;
+    height: 40px !important;
+    width: 40px !important;
+    
+    // border:3px solid #3880ff;
+}
+
+ion-card-title{
+    font-size: 14px !important;
+}
+
+ion-card{
+    height: 225px !important;
+}
+
+.pick-avatar {
+    width: 80px;
+    opacity: 0.3;
+    font-size:12px;
+}
+
+.pick-avatar:hover{
+    cursor: pointer;
+    opacity: 1 !important;
+}
+
+.pick-avatar-seleccionado {
+    transition: opacity 0.5s linear;
+    opacity: 1 !important;
+    font-weight: bold;
+}

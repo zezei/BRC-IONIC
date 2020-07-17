@@ -1,65 +1,163 @@
-<ion-card color="brc-details">
+<ion-grid>
+  <ion-row>
+    <ion-col size="12" size-md="12" size-lg="12">
+      <ion-grid>
+        <ion-row style="background-color: #18A2F2; border: 1px solid #18A2F2;">
+          <ion-col size="2"></ion-col>
+          <ion-col size="3">
+            Running
+          </ion-col>
+          <ion-col size="3">
+            Ciclismo
+          </ion-col>
+          <ion-col size="2">
+            Otros
+          </ion-col>
+          <ion-col size="2">
+            Total
+          </ion-col>
+        </ion-row>
+        <ion-row style="border: 1px solid #18A2F2;">
+          <ion-col size="2">
+            D+
+          </ion-col>
+          <ion-col size="3">
+            <ion-label>{{entrenosRunning.desnivelTotal}}mts</ion-label>
+          </ion-col>
+          <ion-col size="3">
+            <ion-label>{{entrenosCiclismo.desnivelTotal}}mts</ion-label>
+          </ion-col>
+          <ion-col size="2">
+            <ion-label>{{entrenosOtros.desnivelTotal}}mts</ion-label>
+          </ion-col>
+          <ion-col size="2">
+            <ion-label>{{entrenosRunning.desnivelTotal+entrenosCiclismo.desnivelTotal + entrenosOtros.desnivelTotal}} mts</ion-label>
+          </ion-col>
+        </ion-row>
+        <ion-row style="border: 1px solid #18A2F2;">
+          <ion-col size="2">
+            HS
+          </ion-col>
+          <ion-col size="3">
+          <ion-label>{{entrenosRunning.volumenTotalTiempo | minuteSeconds}} hs</ion-label>
+          </ion-col>
+          <ion-col size="3">
+            <ion-label>{{entrenosCiclismo.volumenTotalTiempo | minuteSeconds}} hs</ion-label>
+          </ion-col>
+          <ion-col size="2">
+            <ion-label>{{entrenosOtros.volumenTotalTiempo | minuteSeconds}} hs</ion-label>
+          </ion-col>
+          <ion-col size="2">
+            <ion-label>{{(entrenosRunning.volumenTotalTiempo+entrenosCiclismo.volumenTotalTiempo + entrenosOtros.volumenTotalTiempo) | minuteSeconds }} hs</ion-label>
+          </ion-col>
+        </ion-row>
+        <ion-row style="border: 1px solid #18A2F2;">
+          <ion-col size="2">
+            KMS
+          </ion-col>
+          <ion-col size="3">
+            <ion-label>{{entrenosRunning.volumenTotalDistancia}} kms</ion-label>
+          </ion-col>
+          <ion-col size="3">
+            <ion-label>{{entrenosCiclismo.volumenTotalDistancia}} kms</ion-label>
+          </ion-col>
+          <ion-col size="2">
+            <ion-label>{{entrenosOtros.volumenTotalDistancia}} kms</ion-label>
+          </ion-col>
+          <ion-col size="2">
+          <ion-label>{{entrenosRunning.volumenTotalDistancia+entrenosCiclismo.volumenTotalDistancia + entrenosOtros.volumenTotalDistancia}} kms</ion-label>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <!--  grafico resumen running ciclismo -->
+    </ion-col>
+    <ion-col size="12" size-md="12" size-lg="12">
+      <ion-grid>
+        <ion-row style="background-color: #18A2F2; border: 1px solid #18A2F2;">
+          <ion-col></ion-col>
+          <ion-col *ngFor="let entreno of microciclo.entrenamientos | arrayOrder: 'fecha': '_seconds'">
+            <ion-label>{{entreno.fecha._seconds*1000 | date: 'dd/MM'}}</ion-label>
+          </ion-col>
+
+        </ion-row>
+        <ion-row *ngFor="let i of [1,2,3,4,5]" style="border: 1px solid #18A2F2;">
+          <ion-col>
+            Z{{i}}
+          </ion-col>
+          <ion-col>
+            <ion-label></ion-label>
+          </ion-col>
+          <ion-col>
+            <ion-label></ion-label>
+          </ion-col>
+          <ion-col>
+            <ion-label></ion-label>
+          </ion-col>
+          <ion-col>
+            <ion-label></ion-label>
+          </ion-col>
+          <ion-col>
+            <ion-label></ion-label>
+          </ion-col>
+          <ion-col>
+            <ion-label></ion-label>
+          </ion-col>
+          <ion-col>
+            <ion-label></ion-label>
+          </ion-col>
+          <ion-col>
+            <ion-label></ion-label>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <!--  grafico zonas-->
+    </ion-col>
+    <ion-col size="12" class="ion-no-padding">
+      <ion-card class="ion-no-padding ion-no-margin" color="cuaternario">
+        <ion-card-title>
+          <ion-item color="cuaternario">
+            <ion-label>Entrenamientos</ion-label>
+            <ion-button slot="end" (click)="showEntrenos()" expand="block" fill="clear" shape="round">
+              Ver
+            </ion-button>
+          </ion-item>
+
+        </ion-card-title>
+        <ion-card-content class="ion-no-padding ion-no-margin" *ngIf="microciclo.showEntrenos" color="cuaternario">
+          <div *ngIf="real">
+
+            <app-running-entrenos  [entrenamientosReales]="entrenamientos" [real]="real" ></app-running-entrenos>
+          </div>
+
+          <div *ngIf="!real">
+            <app-running-entrenos  [entrenamientos]="microciclo.entrenamientos" [real]="real" [microciclo]="microciclo" [clienteId]="clienteId" (entrenosActualizados)="getDatosProgrmados()"></app-running-entrenos>
+
+          </div>
+          <!-- Entrenos Running [entrenamientos]="microciclo.entrenamientos" -->
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+
+<!-- <ion-card color="brc-details">
   <ion-card-title>
     <ion-item color="brc-details">
-      <ion-label> Microciclo {{microciclo.nro}}</ion-label>
-      <ion-button (click)="agregarNuevoEntreno()" slot="end" fill="clear">
-          <ion-icon name="add" color="success"></ion-icon>
+      <ion-label class="ion-text-center"> Microciclo {{microciclo.nro}}</ion-label>
+      <ion-button class="add-btn" (click)="agregarNuevoEntreno()" slot="end" fill="clear">
+          <ion-icon name="add-circle" color="success"></ion-icon>
       </ion-button>
+
     </ion-item>
-   
+   <ion-item color="brc-details"> 
+     <ion-label>Vol Semanal: {{volumenTotal}}k</ion-label>
+     <ion-select [(value)]='microciclo.tipo' interface="action-sheet" [(ngModel)]="microciclo.tipo" (ionChange)="actualizarMicro()">
+        <ion-select-option value="carga">Carga</ion-select-option>
+        <ion-select-option value="descarga">Descarga</ion-select-option>
+        <ion-select-option value="competicion">Competicion</ion-select-option>
+        
+      </ion-select>
+   </ion-item>
   </ion-card-title>
-  <ion-card-content color="brc-details" class="ion-no-padding ion-no-margin">
 
-    <ion-list color="brc-details" class="ion-no-padding ion-no-margin">
-      <ion-item-sliding *ngFor="let entreno of microciclo.entrenamientos | arrayOrder: 'fecha'">
-
-        <ion-item color="brc-details" class="ion-no-padding ion-no-margin">
-          <ion-grid>
-            <ion-row>
-              <ion-col size="2">
-                <ion-label>
-                  <h3>
-                    {{entreno.fecha._seconds*1000 | date:'fullDate'}}
-                  </h3>
-                  <p>Running</p>
-                </ion-label>
-
-              </ion-col>
-              <ion-col size="1" class="ion-no-padding ion-no-margin">
-                <h3>
-                  EC
-                </h3>
-                <p> </p>
-              </ion-col>
-              <ion-col size="1" class="ion-no-padding ion-no-margin">
-                <ion-icon name="add"></ion-icon>
-              </ion-col>
-              <ion-col size="6" class="ion-no-padding ion-no-margin">
-                <h3 class="ion-text-center">PP</h3>
-                <p class="ion-text-center">{{entreno.actividadPrincipal | uppercase}}: 15K 3' Fuertes x 2' Suaves </p>
-              </ion-col>
-              <ion-col size="1" class="ion-no-padding ion-no-margin">
-                  <ion-icon name="add"></ion-icon>
-                </ion-col>
-              <ion-col size="1" class="ion-no-padding ion-no-margin">
-                  <h3>
-                    VC
-                  </h3>
-                  <p>4K </p>
-                </ion-col>
-            </ion-row>
-          </ion-grid>
-        </ion-item>
-        <ion-item-options side="start">
-          <ion-item-option (click)="editar(entreno)">Editar</ion-item-option>
-          <ion-item-option color="primary" (click)="share(entreno)">Eliminar</ion-item-option>
-        </ion-item-options>
-
-        <ion-item-options side="end">
-          <ion-item-option (click)="unread(item)">Unread</ion-item-option>
-        </ion-item-options>
-      </ion-item-sliding>
-    </ion-list>
-
-  </ion-card-content>
-</ion-card>
+</ion-card> -->

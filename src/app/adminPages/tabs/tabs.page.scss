@@ -1,4 +1,8 @@
 
 .tab-selected{
-    color: #1ba567 !important; 
+    color: var(--ion-color-detalles) !important; 
 }
+
+ion-toolbar {
+    --opacity: 0.7 !important;
+    }

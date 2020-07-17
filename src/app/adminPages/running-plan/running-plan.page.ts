@@ -17,6 +17,7 @@ export class RunningPlanPage implements OnInit {
     slidesPerView: 4,
   }
 
+  planAnterior: Plan;
   constructor(private activatedRoute: ActivatedRoute, private adminService: AdminService) { }
 
   ngOnInit() {
@@ -28,11 +29,31 @@ export class RunningPlanPage implements OnInit {
     this.adminService.getPlanCliente(clienteId,planId).subscribe(data=>{
       if (data['ok']){
         this.plan = data['plan'];
+        for (let i = 0; i < this.plan.microciclos.length; i++) {
+          const micro = this.plan.microciclos[i];
+          micro.seleccionado = this.getMicroActual(micro)
+          if (micro.seleccionado){
+            this.microciclosSeleccionados.push(micro);
+          }
+          console.log(micro.seleccionado)
+          
+        }
+        this.adminService.getPlanAnterior(this.plan.cliente, this.plan.tipo, this.plan.nro-1).subscribe(data=>{
+          this.planAnterior = data['plan']
+        })
         console.log(this.plan)
       }
     })
   }
 
+
+  getMicroActual(microciclo: Microciclo) {
+    const today = new Date()
+    let fecha_inicio = new Date(microciclo.fecha_inicio._seconds * 1000)
+    let fecha_fin = new Date(microciclo.fecha_fin._seconds * 1000)
+
+    return (today >= fecha_inicio && today < fecha_fin)
+  }
   verSemana(microciclo: Microciclo){
     if (!microciclo.seleccionado){
       microciclo.seleccionado = true;

@@ -17,6 +17,10 @@ const routes: Routes = [
         path: 'hoy',
         loadChildren: () => import('../hoy/hoy.module').then( m => m.HoyPageModule)
       },
+      {
+        path: 'perfil',
+        loadChildren: () => import('../perfil/perfil.module').then( m => m.PerfilPageModule)
+      },
         {
     path: 'home/semana',
     loadChildren: () => import('../seamana-detalle/seamana-detalle.module').then( m => m.SeamanaDetallePageModule)

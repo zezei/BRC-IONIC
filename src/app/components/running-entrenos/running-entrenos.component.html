@@ -1,0 +1,109 @@
+<ion-grid fixed>
+  <ion-row>
+    <ion-col size="6">
+      Vol Total: {{volumenTotal | minuteSeconds}}hs
+    </ion-col>
+    <ion-col size="6">
+    Desnivel Total: {{desnivelTotal | number: .0}}mts
+    </ion-col>
+  </ion-row>
+</ion-grid>
+<ion-list  class="ion-no-padding ion-no-margin" *ngIf="!real">
+  <ion-item-sliding *ngFor="let entreno of entrenamientos | arrayOrder: 'fecha': '_seconds'" >
+
+    <ion-item color="cuaternario" class="ion-no-padding ion-no-margin seleccionable">
+      <ion-grid>
+        <ion-row *ngIf="entreno.entrada_calor_running">
+          <ion-col size="3">
+            <p class="fechaInput">
+              {{entreno.fecha._seconds*1000 | date:'fullDate' | uppercase}}
+            </p>
+            <p class="fechaInput">{{entreno.medio  | uppercase}}</p>
+          </ion-col>
+          <ion-col size="9" class="ion-no-padding ion-no-margin">
+            <p class="ion-text-left">
+              <strong>VT:</strong> {{entreno.volTotal}}
+              <span> -</span>
+
+              <strong> EC:</strong> {{entreno.entrada_calor_running.volUnidad === 'tiempo' ? entreno.entrada_calor_running.volumen + "'": entreno.entrada_calor_running.volumen +"km" }}
+              <span> +</span>
+
+              <strong> PP:</strong> {{entreno.actividadPrincipal | uppercase}}: {{entreno.texto}} 
+              <span> +</span>
+              <strong> VC:</strong> {{entreno.vuelta_a_calma_running.volUnidad === 'tiempo' ? entreno.vuelta_a_calma_running.volumen + "'": entreno.vuelta_a_calma_running.volumen +"km" }}
+            </p>
+
+          </ion-col>
+        </ion-row>
+        <ion-row *ngIf="!entreno.entrada_calor_running">
+          <ion-col size="5">
+            <ion-label>
+              <h3>
+                {{entreno.fecha._seconds*1000 | date:'fullDate' | uppercase}}
+              </h3>
+              <p>{{entreno.medio}}</p>
+            </ion-label>
+
+          </ion-col>
+          <ion-col size="7" class="ion-text-left">
+            <ion-label>Aun no hay ningun entrenamiento</ion-label>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <ion-button slot="end" (click)="editarEntrenoProgrmado(entreno)" *ngIf="screenWidth>600" expand="block" fill="clear" shape="round">
+          Editar
+        </ion-button>
+    </ion-item>
+    <ion-item-options side="start">
+      <ion-item-option (click)="editarEntrenoProgrmado(entreno)" *ngIf="!real">
+        <ion-icon class="editar-entreno" name="create-outline"></ion-icon>
+      </ion-item-option>
+      <ion-item-option (click)="editarEntrenoReal(entreno)" *ngIf="real">
+          <ion-icon class="editar-entreno" name="create-outline"></ion-icon>
+        </ion-item-option>
+    </ion-item-options>
+    <!-- <ion-item-options side="end">
+      <ion-item-option (click)="eliminar(entreno)">Unread</ion-item-option>
+    </ion-item-options> -->
+    <ion-item-options>
+        <ion-item-option side="end"(click)="marcarCompleto(entreno)">Completo</ion-item-option>
+      </ion-item-options>
+  </ion-item-sliding>
+  
+
+
+
+</ion-list>
+<ion-list *ngIf="real" class="ion-no-padding ion-no-margin">
+  <div class="seleccionable">
+
+    <ion-item color="cuaternario" *ngFor="let entrenamiento of entrenamientosReales" detail (click)="verActividad(entrenamiento.id)">
+      <ion-label>
+        <h3>
+
+          {{entrenamiento.start_date | date}}
+        </h3>
+        <p>
+          {{entrenamiento.name}}
+        </p>
+      </ion-label>
+    <ion-label>
+      <h3>{{entrenamiento.type}}</h3>
+      <p>
+        {{entrenamiento.elapsed_time | minuteSeconds}} min
+      </p>
+    </ion-label>
+  <ion-label>
+    <p>
+      {{entrenamiento.distance/1000 | number: '.1-2'}} km
+    </p>
+  <p>D+ {{entrenamiento.total_elevation_gain}} mts</p>
+  </ion-label>
+  <ion-label *ngIf="entrenamiento.has_heartrate">
+    <ion-icon name="fitness-outline"></ion-icon>
+  <p>{{entrenamiento.average_heartrate}}</p>
+  </ion-label>
+    </ion-item>
+  </div>
+    
+  </ion-list>
